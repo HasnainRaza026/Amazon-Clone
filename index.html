@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Amazon</title>
+
+    <link rel="stylesheet" href="Styles/general.css">
+    <link rel="stylesheet" href="Styles/header.css">
+    <link rel="stylesheet" href="Styles/responsive.css">
+    
+</head>
+<body>
+    <!-- Sliding top bar for small screens -->
+    <div class="top-bar js-top-bar">
+        <div>
+            <a href="#">Returns & Orders</a>
+        </div>
+        <div>
+            <a href="#">Cart (<span>2</span>)</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="div-amazon-img">
+            <a href="#"><img class="amazon-logo-mobile" src="Assets/Header_Assets/amazon-mobile-logo-white.png" alt="logo"><img class="amazon-logo-large" src="Assets/Header_Assets/amazon-logo-white.png" alt="logo"></a>
+        </div>
+
+        <div class="div-search-bar">
+            <input type="text" placeholder="Search">
+            <button><img src="Assets/Header_Assets/search-icon.png" alt="search"></button>
+        </div>
+
+        <div class="div-cart-order">
+            <img class="hamburger-icon js-hamburger-icon" src="Assets/Header_Assets/hamburger-menu.png" alt="hamburger-menu">
+
+            <div class="div-order-and-return">
+                <a href="#">
+                    <p class="returns">Returns</p>
+                    <p class="orders">& Orders</p>
+                </a>
+            </div>
+
+            <div class="div-cart">
+                <a href="#">
+                    <img src="Assets/Header_Assets/cart-icon.png" alt="cart">
+                    <div>2</div>
+                    <p>Cart</p> 
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <script src="Scripts/script.js"></script>
+</body>
+</html>
+
+
+
+
+<!-- 
+Order of Styles (CSS) import in html
+1. General styles
+2. Specific styles
+3. Responsive styles
+
+Order of Scripts (JS) import in html
+1. Library Scripts
+2. Custom Scripts
+3. Responsive Scripts 
+-->

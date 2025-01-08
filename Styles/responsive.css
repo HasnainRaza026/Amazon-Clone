@@ -1,0 +1,21 @@
+/* ------------------------------ Header Media Queries ------------------------------------ */
+@media (max-width: 800px) {
+    .div-amazon-img {
+        margin-right: 20px;
+    }   
+}
+
+@media (max-width: 575px) {
+    .amazon-logo-large, .div-order-and-return, .div-cart {
+        display: none;
+    }
+    
+    .amazon-logo-mobile, .hamburger-icon {
+        display: block;
+    }
+
+    .div-cart-order {
+        margin-left: 20px;
+        margin-right: 22px;
+    }
+}
