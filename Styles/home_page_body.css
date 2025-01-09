@@ -8,8 +8,8 @@ main {
 
 .home-body-divs {
     /* background-color: green; */
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
     padding: 40px 25px 25px 25px;
 }
 
@@ -27,11 +27,95 @@ main {
 }   
 
 .home-body-div-content {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     width: 100%;
 }
 
 .home-body-div-title {
     width: 100%;
     font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.home-body-div-rating {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.home-body-div-rating img {
+    width: 110px;
+    height: 22px;
+    margin: 0
+}
+
+.home-body-div-rating a {
+    color: #0984cd;
+    font-size: 18px;
+    margin-top: 3px;
+    margin-left: 8px;
+}
+
+.home-body-div-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.home-body-div-quantity {
+    width: 100%;
+}
+
+.home-body-div-quantity select {
+    background-color: #f0f0f0;
+    border: 1px solid #d5d9d9;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    padding: 6px 8px;
+    cursor: pointer;
+    outline: none; /* Prevents the default focus outline */
+    margin-bottom: 20px
+}
+
+.home-body-div-quantity select:focus {
+    border: 3px solid orange;
+}
+
+.home-body-div-added {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 22px; /* giving fixed height so that Add to Cart button stays on its place when added is displayed none */
+    margin-bottom: 10px
+}
+
+.home-body-div-added p {
+    font-size: 18px;
+    color: green;
+    display: none;
+}
+
+.home-body-div-added img{
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+    display: none;
+}
+
+
+.home-body-div-add {
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+}
+
+.home-body-div-add button {
+    border: none;
+    border-radius: 30px;
+    background-color: #ffd814;
+    font-size: 14px;
+    padding: 11px 0;
+    width: 100%;
 }
