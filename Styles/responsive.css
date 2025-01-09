@@ -19,3 +19,36 @@
         margin-right: 22px;
     }
 }
+
+
+ /* Main body Media Query */
+ @media (max-width: 1300px) {
+    main {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1000px) {
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 575px) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
