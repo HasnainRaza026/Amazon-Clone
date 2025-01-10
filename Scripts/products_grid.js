@@ -66,11 +66,13 @@ function renderProducts(products) {
                 </select>
             </div>
             ${variationElem ? variationElem : ''}
+        </div>
+        <div class="home-body-div-add">
             <div class="home-body-div-added">
-                <img src="Assets/Body_Assets/Others/checkmark.png" alt="added">
-                <p>Added</p>
+                    <img src="Assets/Body_Assets/Others/checkmark.png" alt="added">
+                    <p>Added</p>
             </div>
-            <div class="home-body-div-add"><button>Add to Cart</button></div>
+            <div><button>Add to Cart</button></div>
         </div>
     </div>`
 
