@@ -80,8 +80,8 @@
       "Size": ["S", "M", "L"]
     },
     "variationImages": {
-      "{\"Color\":\"Yellow\"}": "Assets/Body_Assets/Products/plain-hooded-fleece-sweatshirt-yellow.jpg",
-      "{\"Color\":\"Teal\"}": "Assets/Body_Assets/Products/plain-hooded-fleece-sweatshirt-teal.jpg"
+      "{\"Color\":\"Yellow\"}": "Assets/Body_Assets/Products/Variations/plain-hooded-fleece-sweatshirt-yellow.jpg",
+      "{\"Color\":\"Teal\"}": "Assets/Body_Assets/Products/Variations/plain-hooded-fleece-sweatshirt-teal.jpg"
     }
   },
   {
@@ -99,8 +99,8 @@
       "Set": ["6-Piece", "4-Piece"]
     },
     "variationImages": {
-      "{\"Set\":\"6-Piece\"}": "Assets/Body_Assets/Products/luxury-tower-set-6-piece.jpg",
-      "{\"Set\":\"4-Piece\"}": "Assets/Body_Assets/Products/luxury-tower-set-4-piece.jpg"
+      "{\"Set\":\"6-Piece\"}": "Assets/Body_Assets/Products/Variations/luxury-tower-set-6-piece.jpg",
+      "{\"Set\":\"4-Piece\"}": "Assets/Body_Assets/Products/Variations/luxury-tower-set-4-piece.jpg"
     }
   },
   {
@@ -117,8 +117,8 @@
       "Style": ["Plain", "Lavender"]
     },
     "variationImages": {
-      "{\"Style\":\"Plain\"}": "Assets/Body_Assets/Products/liquid-laundry-detergent-plain.jpg",
-      "{\"Style\":\"Lavender\"}": "Assets/Body_Assets/Products/liquid-laundry-detergent-lavender.jpg"
+      "{\"Style\":\"Plain\"}": "Assets/Body_Assets/Products/Variations/liquid-laundry-detergent-plain.jpg",
+      "{\"Style\":\"Lavender\"}": "Assets/Body_Assets/Products/Variations/liquid-laundry-detergent-lavender.jpg"
     }
   },
   {
@@ -160,8 +160,8 @@
       "Style": ["Black", "Gold"]
     },
     "variationImages": {
-      "{\"Style\":\"Black\"}": "Assets/Body_Assets/Products/round-sunglasses-black.jpg",
-      "{\"Style\":\"Gold\"}": "Assets/Body_Assets/Products/round-sunglasses-gold.jpg"
+      "{\"Style\":\"Black\"}": "Assets/Body_Assets/Products/Variations/round-sunglasses-black.jpg",
+      "{\"Style\":\"Gold\"}": "Assets/Body_Assets/Products/Variations/round-sunglasses-gold.jpg"
     }
   },
   {
@@ -204,9 +204,9 @@
       "Waist size (inches)": ["30", "31", "32"]
     },
     "variationImages": {
-      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/men-slim-fit-summer-shorts-gray.jpg",
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/men-slim-fit-summer-shorts-black.jpg",
-      "{\"Color\":\"Beige\"}": "Assets/Body_Assets/Products/men-slim-fit-summer-shorts-beige.jpg"
+      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/Variations/men-slim-fit-summer-shorts-gray.jpg",
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/men-slim-fit-summer-shorts-black.jpg",
+      "{\"Color\":\"Beige\"}": "Assets/Body_Assets/Products/Variations/men-slim-fit-summer-shorts-beige.jpg"
     }
   },
   {
@@ -269,9 +269,9 @@
       "Size": ["XS", "S", "M", "L"]
     },
     "variationImages": {
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/women-stretch-popover-hoodie-black.jpg",
-      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/women-stretch-popover-hoodie-gray.jpg",
-      "{\"Color\":\"Blue\"}": "Assets/Body_Assets/Products/women-stretch-popover-hoodie-blue.jpg"
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/women-stretch-popover-hoodie-black.jpg",
+      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/Variations/women-stretch-popover-hoodie-gray.jpg",
+      "{\"Color\":\"Blue\"}": "Assets/Body_Assets/Products/Variations/women-stretch-popover-hoodie-blue.jpg"
     }
   },
   {
@@ -300,8 +300,8 @@
       "Shoe size (US)": ["6", "7", "8"]
     },
     "variationImages": {
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/women-knit-ballet-flat-black.jpg",
-      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/women-knit-ballet-flat-gray.jpg"
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/women-knit-ballet-flat-black.jpg",
+      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/Variations/women-knit-ballet-flat-gray.jpg"
     }
   },
   {
@@ -319,9 +319,9 @@
       "Size": ["S", "M", "L"]
     },
     "variationImages": {
-      "{\"Color\":\"Blue\"}": "Assets/Body_Assets/Products/men-golf-polo-t-shirt-blue.jpg",
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/men-golf-polo-t-shirt-black.jpg",
-      "{\"Color\":\"Red\"}": "Assets/Body_Assets/Products/men-golf-polo-t-shirt-red.jpg"
+      "{\"Color\":\"Blue\"}": "Assets/Body_Assets/Products/Variations/men-golf-polo-t-shirt-blue.jpg",
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/men-golf-polo-t-shirt-black.jpg",
+      "{\"Color\":\"Red\"}": "Assets/Body_Assets/Products/Variations/men-golf-polo-t-shirt-red.jpg"
     }
   },
   {
@@ -338,8 +338,8 @@
       "Size": ["50L", "30L Tall"]
     },
     "variationImages": {
-      "{\"Size\":\"50L\"}": "Assets/Body_Assets/Products/trash-can-with-foot-pedal-50-liter.jpg",
-      "{\"Size\":\"30L Tall\"}": "Assets/Body_Assets/Products/trash-can-with-foot-pedal-30-liter-tall.jpg"
+      "{\"Size\":\"50L\"}": "Assets/Body_Assets/Products/Variations/trash-can-with-foot-pedal-50-liter.jpg",
+      "{\"Size\":\"30L Tall\"}": "Assets/Body_Assets/Products/Variations/trash-can-with-foot-pedal-30-liter-tall.jpg"
     }
   },
   {
@@ -357,10 +357,10 @@
       "Size": ["Twin", "Queen"]
     },
     "variationImages": {
-      "{\"Color\":\"Blue\",\"Size\":\"Twin\"}": "Assets/Body_Assets/Products/duvet-cover-set-blue-twin.jpg",
-      "{\"Color\":\"Blue\",\"Size\":\"Queen\"}": "Assets/Body_Assets/Products/duvet-cover-set-blue-queen.jpg",
-      "{\"Color\":\"Red\",\"Size\":\"Twin\"}": "Assets/Body_Assets/Products/duvet-cover-set-red-twin.jpg",
-      "{\"Color\":\"Red\",\"Size\":\"Queen\"}": "Assets/Body_Assets/Products/duvet-cover-set-red-queen.jpg"
+      "{\"Color\":\"Blue\",\"Size\":\"Twin\"}": "Assets/Body_Assets/Products/Variations/duvet-cover-set-blue-twin.jpg",
+      "{\"Color\":\"Blue\",\"Size\":\"Queen\"}": "Assets/Body_Assets/Products/Variations/duvet-cover-set-blue-queen.jpg",
+      "{\"Color\":\"Red\",\"Size\":\"Twin\"}": "Assets/Body_Assets/Products/Variations/duvet-cover-set-red-twin.jpg",
+      "{\"Color\":\"Red\",\"Size\":\"Queen\"}": "Assets/Body_Assets/Products/Variations/duvet-cover-set-red-queen.jpg"
     }
   },
   {
@@ -390,9 +390,9 @@
       "Size": ["30", "31", "32"]
     },
     "variationImages": {
-      "{\"Color\":\"Beige\"}": "Assets/Body_Assets/Products/men-chino-pants-beige.jpg",
-      "{\"Color\":\"Green\"}": "Assets/Body_Assets/Products/men-chino-pants-green.jpg",
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/men-chino-pants-black.jpg"
+      "{\"Color\":\"Beige\"}": "Assets/Body_Assets/Products/Variations/men-chino-pants-beige.jpg",
+      "{\"Color\":\"Green\"}": "Assets/Body_Assets/Products/Variations/men-chino-pants-green.jpg",
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/men-chino-pants-black.jpg"
     }
   },
   {
@@ -410,8 +410,8 @@
       "Size": ["9", "10", "11", "12"]
     },
     "variationImages": {
-      "{\"Color\":\"Green\"}": "Assets/Body_Assets/Products/men-athletic-shoes-green.jpg",
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/men-athletic-shoes-black.jpg"
+      "{\"Color\":\"Green\"}": "Assets/Body_Assets/Products/Variations/men-athletic-shoes-green.jpg",
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/men-athletic-shoes-black.jpg"
     }
   },
   {
@@ -428,8 +428,8 @@
       "Color": ["Brown", "Silver"]
     },
     "variationImages": {
-      "{\"Color\":\"Brown\"}": "Assets/Body_Assets/Products/men-navigator-sunglasses-brown.jpg",
-      "{\"Color\":\"Silver\"}": "Assets/Body_Assets/Products/men-navigator-sunglasses-silver.jpg"
+      "{\"Color\":\"Brown\"}": "Assets/Body_Assets/Products/Variations/men-navigator-sunglasses-brown.jpg",
+      "{\"Color\":\"Silver\"}": "Assets/Body_Assets/Products/Variations/men-navigator-sunglasses-silver.jpg"
     }
   },
   {
@@ -469,8 +469,8 @@
       "Size": ["S", "M", "L"]
     },
     "variationImages": {
-      "{\"Color\":\"Camo\"}": "Assets/Body_Assets/Products/women-french-terry-fleece-jogger-camo.jpg",
-      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/women-french-terry-fleece-jogger-gray.jpg"
+      "{\"Color\":\"Camo\"}": "Assets/Body_Assets/Products/Variations/women-french-terry-fleece-jogger-camo.jpg",
+      "{\"Color\":\"Gray\"}": "Assets/Body_Assets/Products/Variations/women-french-terry-fleece-jogger-gray.jpg"
     }
   },
   {
@@ -590,8 +590,8 @@
       "Size": ["M", "L", "XL"]
     },
     "variationImages": {
-      "{\"Color\":\"Red\"}": "Assets/Body_Assets/Products/men-cozy-fleece-zip-up-hoodie-red.jpg",
-      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/men-cozy-fleece-zip-up-hoodie-black.jpg"
+      "{\"Color\":\"Red\"}": "Assets/Body_Assets/Products/Variations/men-cozy-fleece-zip-up-hoodie-red.jpg",
+      "{\"Color\":\"Black\"}": "Assets/Body_Assets/Products/Variations/men-cozy-fleece-zip-up-hoodie-black.jpg"
     }
   }
 ]

@@ -20,13 +20,16 @@ function renderProducts(products) {
         let variationElem = "";
         if (product.variations) {
             let div = "";
+            let count = 1;
             Object.entries(product.variations).forEach(([key, value]) => {
-                div += `<div class="home-body-div-variation">
-                            <p>${key}</p>`
+                div += `<div class="home-body-div-variation js-variation-number-${count}">
+                            <p class="js-variation-type">${key}</p>`
                 value.forEach(val => {
-                    div += `<div>${val}</div>`
+                    div += `<div class="js-variation" variation-number="${count}" product-id="${product.id}">${val}</div>`
                 });
                 div += '</div>'
+
+                count++;
             })
             variationElem = div;
         }
@@ -69,10 +72,10 @@ function renderProducts(products) {
         </div>
         <div class="home-body-div-add">
             <div class="home-body-div-added">
-                    <img src="Assets/Body_Assets/Others/checkmark.png" alt="added">
-                    <p>Added</p>
+                    <img class="js-added-to-cart" src="Assets/Body_Assets/Others/checkmark.png" alt="added">
+                    <p class="js-added-to-cart">Added</p>
             </div>
-            <div><button>Add to Cart</button></div>
+            <div><button class="js-add-to-cart-btn" product-id="${product.id}">Add to Cart</button></div>
         </div>
     </div>`
 

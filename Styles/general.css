@@ -21,7 +21,10 @@ html {
     font-family: var(--font-type);
 }
 
-button, a {
+button, select {
     cursor: pointer;
+}
+
+a {
     text-decoration: none;
 }
