@@ -46,7 +46,7 @@ function renderProducts(products) {
         }
 
         mainElem.innerHTML += `<div class="home-body-divs" id="${product.id}">
-        <div class="home-body-div-img"><img src="${product.image}" alt="item"></div>
+        <div class="home-body-div-img"><img class="js-product-image" src="${product.image}" alt="item"></div>
         <div class="home-body-div-content">
             <div class="home-body-div-title">${product.name}</div>
             <div class="home-body-div-rating">
