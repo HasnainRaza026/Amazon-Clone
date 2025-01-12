@@ -2,48 +2,62 @@ fetchJSON('./Data/products.json').then(data => {
     if (data) renderProducts(data);
 });
 
-
 function renderProducts(products) {
-    const mainElem = document.querySelector(".home-product-grid")
+    const mainElem = document.querySelector(".home-product-grid");
+    const fragment = document.createDocumentFragment(); //DocumentFragment is DOM-like structure (Not part of actual DOM tree) that acts as a temporary container for DOM elements. We do all upadates in it then finally append it to the actual DOM. If I directly update the DOM each time, the browser will trigger a reflow and repaint, which can degrade performance
+
     products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'home-body-divs';
+        card.id = `${product.id}`;
+        card.innerHTML = renderProductCard(product);
+        fragment.appendChild(card);
+    });
 
-        let variationElem = "";
-        if (product.variations) {
-            let div = "";
-            let count = 1;
-            Object.entries(product.variations).forEach(([key, value]) => {
-                div += `<div class="home-body-div-variation js-variation-number-${count}">
-                            <p class="js-variation-type">${key}</p>`
-                value.forEach(val => {
-                    div += `<div class="js-variation" variation-number="${count}" product-id="${product.id}">${val}</div>`
-                });
-                div += '</div>'
+    mainElem.appendChild(fragment);
+}
 
-                count++;
-            })
-            variationElem = div;
-        }
 
-        let stars;
-        if (product.rating.stars === 3.5) {
-            stars = "Assets/Body_Assets/Rating_Stars/rating-35.png";
-        } else if (product.rating.stars === 4) {
-            stars = "Assets/Body_Assets/Rating_Stars/rating-4.png";   
-        } else if (product.rating.stars === 4.5) {
-            stars = "Assets/Body_Assets/Rating_Stars/rating-45.png";   
-        } else {
-            stars = "Assets/Body_Assets/Rating_Stars/rating-5.png";   
-        }
+function renderStars(rating) {
+    const starImages = {
+        3.5: "Assets/Body_Assets/Rating_Stars/rating-35.png",
+        4: "Assets/Body_Assets/Rating_Stars/rating-4.png",
+        4.5: "Assets/Body_Assets/Rating_Stars/rating-45.png",
+        5: "Assets/Body_Assets/Rating_Stars/rating-5.png"
+    };
+    return starImages[rating] || starImages[5]; // Default to 5 stars
+}
 
-        mainElem.innerHTML += `<div class="home-body-divs" id="${product.id}">
-        <div class="home-body-div-img"><img class="js-product-image" src="${product.image}" alt="item"></div>
+
+function renderVariations(variations, productId) {
+    return Object.entries(variations).map(([type, values], index) => `
+        <div class="home-body-div-variation js-variation-number-${index + 1}">
+            <p class="js-variation-type">${type}</p>
+            ${values.map(val => `
+                <div class="js-variation" 
+                     variation-number="${index + 1}" 
+                     product-id="${productId}">
+                     ${val}
+                </div>`).join('')}
+        </div>
+    `).join('');
+}
+
+
+function renderProductCard(product) {
+    const stars = renderStars(product.rating.stars || 5);
+    const price = (product.priceCents ? (product.priceCents / 100).toFixed(2) : "N/A");
+    const variations = product.variations ? renderVariations(product.variations, product.id) : '';
+
+    return `
+        <div class="home-body-div-img"><img class="js-product-image" src="${product.image}" alt="${product.name}"></div>
         <div class="home-body-div-content">
             <div class="home-body-div-title">${product.name}</div>
             <div class="home-body-div-rating">
                 <img src="${stars}" alt="rating">
                 <a href="#">${product.rating.count}</a>
             </div>
-            <div class="home-body-div-price">$${(product.priceCents/100).toFixed(2)}</div>
+            <div class="home-body-div-price">$${price}</div>
             <div class="home-body-div-quantity">
                 <select name="product-quantity" id="quantity">
                     <option value="1">1</option>
@@ -58,7 +72,7 @@ function renderProducts(products) {
                     <option value="10">10</option>
                 </select>
             </div>
-            ${variationElem ? variationElem : ''}
+            ${variations}
         </div>
         <div class="home-body-div-add">
             <div class="home-body-div-added">
@@ -66,8 +80,5 @@ function renderProducts(products) {
                     <p class="js-added-to-cart">Added</p>
             </div>
             <div><button class="js-add-to-cart-btn" product-id="${product.id}">Add to Cart</button></div>
-        </div>
-    </div>`
-
-    });
+        </div>`;
 }
