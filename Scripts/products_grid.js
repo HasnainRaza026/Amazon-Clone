@@ -1,16 +1,6 @@
-fetch('./Data/products.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json(); // Parse JSON from the response
-    })
-    .then(data => {
-        renderProducts(data);
-    })
-    .catch(error => {
-        console.error('Error fetching the JSON file:', error);
-    });
+fetchJSON('./Data/products.json').then(data => {
+    if (data) renderProducts(data);
+});
 
 
 function renderProducts(products) {
