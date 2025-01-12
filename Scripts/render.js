@@ -1,7 +1,3 @@
-fetchJSON('./Data/products.json').then(data => {
-    if (data) renderProducts(data);
-});
-
 function renderProducts(products) {
     const mainElem = document.querySelector(".home-product-grid");
     const fragment = document.createDocumentFragment(); //DocumentFragment is DOM-like structure (Not part of actual DOM tree) that acts as a temporary container for DOM elements. We do all upadates in it then finally append it to the actual DOM. If I directly update the DOM each time, the browser will trigger a reflow and repaint, which can degrade performance
