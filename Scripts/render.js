@@ -27,12 +27,13 @@ function renderStars(rating) {
 
 function renderVariations(variations, productId) {
     return Object.entries(variations).map(([type, values], index) => `
-        <div class="home-body-div-variation js-variation-number-${index + 1}">
+        <div class="home-body-div-variation js-variations-div js-variation-number-${index + 1}">
             <p class="js-variation-type">${type}</p>
             ${values.map(val => `
                 <div class="js-variation" 
                      variation-number="${index + 1}" 
-                     product-id="${productId}">
+                     product-id="${productId}"
+                     selected="false">
                      ${val}
                 </div>`).join('')}
         </div>
@@ -48,12 +49,12 @@ function renderProductCard(product) {
     return `
         <div class="home-body-div-img"><img class="js-product-image" src="${product.image}" alt="${product.name}"></div>
         <div class="home-body-div-content">
-            <div class="home-body-div-title">${product.name}</div>
+            <div class="home-body-div-title js-product-name">${product.name}</div>
             <div class="home-body-div-rating">
                 <img src="${stars}" alt="rating">
                 <a href="#">${product.rating.count}</a>
             </div>
-            <div class="home-body-div-price">$${price}</div>
+            <div class="home-body-div-price js-product-price">$${price}</div>
             <div class="home-body-div-quantity">
                 <select name="product-quantity" id="quantity">
                     <option value="1">1</option>
