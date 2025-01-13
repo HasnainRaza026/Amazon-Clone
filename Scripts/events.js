@@ -1,9 +1,8 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
 
+
 document.addEventListener("DOMContentLoaded", async () => {
-    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-    localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
     document.querySelector(".js-cart-quantity").innerText = cartQuantity;
     
     const products = await fetchJSON('./Data/products.json');
@@ -26,52 +25,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function handleAddToCart(target) {
     const id = target.getAttribute("product-id"); // We can't use 'this' keyword because the function is listening for the click events on the entire document, hence we use 'event.target'
+    const productElem = document.getElementById(id);
+    
+    cartQuantity += Number(productElem.querySelector("select").value);
+    updateCartQuantity(cartQuantity);
+    displayAddedToCart(productElem);
 
-    const ProductElem = document.getElementById(id);
-    const addedElems = ProductElem.querySelectorAll(".js-added-to-cart");
-
-    addedElems.forEach(elem => {
-        elem.style.display = "block";
-    });
-
-    setTimeout(() => {
-        addedElems.forEach(elem => {
-            elem.style.display = "none";
-        });
-    }, 2000);
-
-    cartQuantity++;
-    document.querySelector(".js-cart-quantity").innerText = cartQuantity;
-
-    const variationObject = {};
-
-    const variationsDivs = ProductElem.querySelectorAll(".js-variations-div");
-    if (variationsDivs.length > 0) {
-        variationsDivs.forEach(elem => {
-            const variationTypeElem = elem.querySelector(".js-variation-type");
-            if (variationTypeElem) {
-                const variationType = variationTypeElem.innerText;
-
-                // Find the selected variation value
-                const selectedVariation = Array.from(elem.querySelectorAll(".js-variation")).find(varElem => {
-                    return varElem.getAttribute("selected") === "true";
-                });
-                if (selectedVariation) {
-                    variationObject[variationType] = selectedVariation.innerText;
-                } else {
-                    variationObject[variationType] = elem.querySelector(".js-variation").innerText;
-                }
-            }
-        });
+    const productDetails = getProductDetails(productElem);
+    if (!productDetails) {
+        console.error(`Failed to extract details for product ID ${id}`);
+        return;
     }
 
-    cartProducts.push({
-        name: ProductElem.querySelector(".js-product-name").innerText,
-        price: ProductElem.querySelector(".js-product-price").innerText,
-        image: ProductElem.querySelector(".js-product-image").getAttribute("src"),
-        quantity: ProductElem.querySelector("select").value,
-        variation: variationObject
-    });
+    cartProducts.push(productDetails);
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+    console.log(cartProducts);
 }
 
 

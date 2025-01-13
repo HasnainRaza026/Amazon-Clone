@@ -1,4 +1,4 @@
-/* ------------------------------ Header Media Queries ------------------------------------ */
+/* ------------------------------ Home Page Header Media Queries ------------------------------------ */
 @media (max-width: 800px) {
     .div-amazon-img {
         margin-right: 20px;
@@ -21,7 +21,7 @@
 }
 
 
- /* Main body Media Query */
+ /* ----------------------------Home Page Product Grid Media Query -------------------------------- */
  @media (max-width: 1300px) {
     .home-product-grid {
         grid-template-columns: repeat(5, 1fr);
@@ -52,3 +52,26 @@
     }
 }
 
+
+ /* ----------------------------Checkout Page Header Media Query -------------------------------- */
+@media (max-width: 1000px) {
+    .checkout-header-text p {
+        font-size: 22px;
+    }
+    
+    .checkout-header-text span {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .checkout-header-amazon-img .large {
+        display: none;
+    }
+    .checkout-header-amazon-img .small {
+        display: block;
+    }
+    .checkout-header-amazon-img {
+        align-items: center;
+    }
+}
