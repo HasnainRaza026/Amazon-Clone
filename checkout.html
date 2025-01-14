@@ -10,15 +10,17 @@
     <link rel="stylesheet" href="Styles/responsive.css">
 
 </head>
-<body>
+<body id="checkout">
     <header class="checkout-header">
         <div class="checkout-header-div">
             <div class="checkout-header-amazon-img">
+                <a href="index.html">
                 <img class="large" src="Assets/Header_Assets/amazon-logo.png" alt="amazon">
                 <img class="small" src="Assets/Header_Assets/amazon-mobile-logo.png" alt="amazon">
+            </a>
             </div>
             <div class="checkout-header-text">
-                <p>Checkout (<span>2 items</span>)</p>
+                <p>Checkout (<span class="js-checkout-item-quantity">0 items</span>)</p>
             </div>
             <div class="checkout-header-lock">
                 <img src="Assets/Header_Assets/checkout-lock-icon.png" alt="lock">
@@ -30,8 +32,8 @@
         <div class="checkout-main-div">
             <div class="checkout-heading">Review your order</div>
             <div class="checkout-content-div">
-                <div class="checkout-products">
-                    <div class="product">
+                <div class="checkout-products"> <!--DOM access this-->
+                    <div class="product"> <!--DOM multiply this-->
                         <div class="delivery">Delivery date: Thursday, January 23</div>
                         <div class="details">
                             <div class="product-details">
@@ -72,6 +74,51 @@
                             </div>
                         </div>
                     </div>
+
+<!-- 
+                    <div class="product"> 
+                        <div class="delivery">Delivery date: Thursday, January 23</div>
+                        <div class="details">
+                            <div class="product-details">
+                                <img src="Assets/Body_Assets/Products/plain-hooded-fleece-sweatshirt-yellow.jpg" alt="product-image">
+                                <div>
+                                    <p class="name">Plain Hooded Fleece Sweatshirt</p>
+                                    <p class="price">$24.00</p>
+                                    <p class="variation">Color: Yellow</p>
+                                    <p class="variation">Size: S</p>
+                                    <p class="variation">Quantity: 3<a href="#">Update</a><a href="#">Delete</a></p>
+                                </div>
+                            </div>
+                            <div class="COD-options">
+                                <div>
+                                    <p class="heading">Choose a delivery option:</p>
+                                    <div class="option">
+                                        <input type="radio">
+                                        <div>
+                                            <p class="date">Thursday, January 23</p>
+                                            <p class="shipping-fee">FREE Shipping</p>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio">
+                                        <div>
+                                            <p class="date">Friday, January 17</p>
+                                            <p class="shipping-fee">$4.99 - Shipping</p>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio">
+                                        <div>
+                                            <p class="date">Wednesday, January 15</p>
+                                            <p class="shipping-fee">$9.99 - Shipping</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
                 </div>
                 <div class="checkout-total">
                     <div class="checkout-total-heading">Order Summary</div>
@@ -83,9 +130,7 @@
                         <p>Shipping & handling:</p>
                         <p>$9.99</p>
                     </div>
-                    <!-- <div class="bar"> -->
-                        <hr class="bar">
-                    <!-- </div> -->
+                    <hr class="bar">
                     <div class="checkout-price">
                         <p>Total before tax:</p>
                         <p>$81.99</p>
@@ -104,5 +149,10 @@
             </div>
         </div>
     </main>
+
+    <script src="Scripts/fetch.js"></script>
+    <script src="Scripts/helper.js"></script>
+    <script src="Scripts/render.js"></script>
+    <script src="Scripts/events.js"></script>
 </body>
 </html>

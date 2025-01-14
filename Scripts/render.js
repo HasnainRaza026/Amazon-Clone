@@ -1,4 +1,5 @@
-function renderProducts(products) {
+// ======================> Render Functions for index.html <=========================
+function renderHomeProducts(products) {
     const mainElem = document.querySelector(".home-product-grid");
     const fragment = document.createDocumentFragment(); //DocumentFragment is DOM-like structure (Not part of actual DOM tree) that acts as a temporary container for DOM elements. We do all upadates in it then finally append it to the actual DOM. If I directly update the DOM each time, the browser will trigger a reflow and repaint, which can degrade performance
 
@@ -13,7 +14,6 @@ function renderProducts(products) {
     mainElem.appendChild(fragment);
 }
 
-
 function renderStars(rating) {
     const starImages = {
         3.5: "Assets/Body_Assets/Rating_Stars/rating-35.png",
@@ -23,7 +23,6 @@ function renderStars(rating) {
     };
     return starImages[rating] || starImages[5]; // Default to 5 stars
 }
-
 
 function renderVariations(variations, productId) {
     return Object.entries(variations).map(([type, values], index) => `
@@ -39,7 +38,6 @@ function renderVariations(variations, productId) {
         </div>
     `).join('');
 }
-
 
 function renderProductCard(product) {
     const stars = renderStars(product.rating.stars || 5);
@@ -78,4 +76,21 @@ function renderProductCard(product) {
             </div>
             <div><button class="js-add-to-cart-btn" product-id="${product.id}">Add to Cart</button></div>
         </div>`;
+}
+
+
+
+// ======================> Render Functions for checkout.html <=========================
+function renderCheckoutProducts(products) {
+    const mainDiv = document.querySelector(".checkout-products");
+    // mainDiv.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+
+    // products.forEach(product => {
+    //     const card = document.createElement('div');
+    //     card.className = 'home-body-divs';
+    //     card.id = `${product.id}`;
+    //     card.innerHTML = renderProductCard(product);
+    //     fragment.appendChild(card);
+    // });
 }

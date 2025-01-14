@@ -23,6 +23,7 @@ function displayAddedToCart(productElem) {
 
 function updateCartQuantity(quantity) {
     document.querySelector(".js-cart-quantity").innerText = quantity;
+    document.querySelector(".js-cart-quantity-sm").innerText = quantity;
     localStorage.setItem("cartQuantity", JSON.stringify(quantity));
 }
 

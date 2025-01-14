@@ -97,6 +97,7 @@
     border: 1px solid #dedede;
     border-radius: 4px;
     padding: 20px 15px;
+    margin-bottom: 15px;
 }
 
 .checkout-products .product .delivery {

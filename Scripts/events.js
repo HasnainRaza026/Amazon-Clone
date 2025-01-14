@@ -3,23 +3,35 @@ let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    document.querySelector(".js-cart-quantity").innerText = cartQuantity;
+    const bodyId = document.body.getAttribute("id");
+
+    // Event Listners for the index.html 
+    if (bodyId === "home") {
+        document.querySelector(".js-cart-quantity").innerText = cartQuantity;
+        document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
+        
+        const products = await fetchJSON('./Data/products.json');
+        if (products) renderHomeProducts(products);
+
+        document.querySelector(".js-hamburger-icon").addEventListener("click", () => {
+            const topBar = document.querySelector(".js-top-bar");
+            topBar.classList.toggle("show"); // Toggle the 'show' class (adds and removes the class from element)
+        });
+
+        document.querySelector(".home-product-grid").addEventListener("click", (event) => {
+            if (event.target.matches(".js-add-to-cart-btn")) {
+                handleAddToCart(event.target);
+            } else if (event.target.matches(".js-variation")) {
+                handleVariationClick(event.target, products);
+            }
+        });
+    } 
     
-    const products = await fetchJSON('./Data/products.json');
-    if (products) renderProducts(products);
-
-    document.querySelector(".js-hamburger-icon").addEventListener("click", () => {
-        const topBar = document.querySelector(".js-top-bar");
-        topBar.classList.toggle("show"); // Toggle the 'show' class (adds and removes the class from element)
-    });
-
-    document.querySelector(".home-product-grid").addEventListener("click", (event) => {
-        if (event.target.matches(".js-add-to-cart-btn")) {
-            handleAddToCart(event.target);
-        } else if (event.target.matches(".js-variation")) {
-            handleVariationClick(event.target, products);
-        }
-    });
+    // Event Listners for the checkout.html 
+    else if (bodyId === "checkout") {
+        document.querySelector(".js-checkout-item-quantity").innerText = cartQuantity + " items";
+        if (cartProducts) renderCheckoutProducts(cartProducts);
+    }
 });
 
 
