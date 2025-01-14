@@ -53,18 +53,19 @@
 }
 
 
- /* ----------------------------Checkout Page Header Media Query -------------------------------- */
+ /* ----------------------------Checkout Page Header and Main Media Query -------------------------------- */
 @media (max-width: 1000px) {
+    /* For Header */
     .checkout-header-text p {
         font-size: 22px;
     }
-    
     .checkout-header-text span {
         font-size: 20px;
     }
 }
 
 @media (max-width: 575px) {
+    /* For Header */
     .checkout-header-amazon-img .large {
         display: none;
     }
@@ -74,4 +75,24 @@
     .checkout-header-amazon-img {
         align-items: center;
     }
+}
+
+@media (max-width: 1120px) {
+    /* For Main */
+   .checkout-content-div {
+       flex-direction: column;
+       gap: 10px;
+   }
+   .checkout-total {
+       order: -1;
+       width: 100%;
+       margin: 0;
+   }
+   .checkout-products .product .details {
+       flex-direction: column;
+       gap: 50px;
+   }
+   .checkout-main-div {
+       width: 500px;
+   }
 }
