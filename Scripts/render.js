@@ -97,9 +97,12 @@ function renderCheckoutProducts(products) {
     });
 
     productDiv.appendChild(fragment);
+    renderCheckoutSummery(price)
+}
 
+function renderCheckoutSummery(price) {
     const mainDiv = document.querySelector(".checkout-content-div");
-    fragment.innerHTML = "";
+    const fragment = document.createDocumentFragment();
     const total = document.createElement('div');
     total.className = 'checkout-total';
     total.innerHTML = renderCheckoutTotal(price);
@@ -145,7 +148,6 @@ function renderCheckoutTotal(totalPrice) {
         <button class="order">Place your order</button>
     `
 }
-
 
 function renderCheckoutCard(product) {
     const variations = product.variation ? renderCheckoutVariations(product.variation) : '';

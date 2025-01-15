@@ -96,13 +96,14 @@ function handleVariationClick(target, products) {
 function handleDeleteClick(target) {
     const id = target.getAttribute("product-id");
     const product = cartProducts.find(p => p.id === id);
+    if (!product) return;
 
     cartQuantity -= product.quantity;
     cartProducts.splice(cartProducts.indexOf(product), 1);
 
-    localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
-    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+    updateLocalStorage();
 }
+
 
 function handleUpdateClick(target) {
     const id = target.getAttribute("product-id");
@@ -111,24 +112,22 @@ function handleUpdateClick(target) {
     if (quantityElem.tagName === "SPAN") {
         target.innerText = "Save";
         quantityElem.outerHTML = `<input type="number" class="js-checkout-quantity-update" product-id="${id}" style="width: 40px; height: 20px; padding-left: 5px" placeholder="${quantityElem.innerText}" min="1" max="10">`;
-    } else {
+    } 
+    else {
+        let quantity = parseInt(quantityElem.value) || 1;
+        if (quantity < 1 || quantity > 10) return alert("Quantity must be between 1 and 10.");
+
         target.innerText = "Update";
-        let productQuantity = '';
         let totalQuantity = 0;
 
-        cartProducts.forEach(item => {
-            if (item.id === id) {   
-                item.quantity = quantityElem.value || 1;
-                productQuantity = item.quantity;
-            }
-            totalQuantity += Number(item.quantity);
+        cartProducts.forEach(product => {
+            if (product.id === id) product.quantity = quantity;
+            totalQuantity += Number(product.quantity);
         });
         cartQuantity = totalQuantity;
+        updateLocalStorage()
 
-        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
-        quantityElem.outerHTML = `<span class="js-checkout-quantity-update">${productQuantity}</span>`;
-
+        quantityElem.outerHTML = `<span class="js-checkout-quantity-update">${quantity}</span>`;
         location.reload();
     }  
 }

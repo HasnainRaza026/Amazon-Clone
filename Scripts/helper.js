@@ -67,3 +67,8 @@ function getDate(daysToAdd = 0) {
 
     return now.toLocaleDateString('en-US', options);
 }
+
+function updateLocalStorage() {
+    localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+}
