@@ -57,3 +57,12 @@ function getProductDetails(productElem) {
         variation: variationObject
     };
 }
+
+
+function getDate(daysToAdd = 0) {
+    const now = new Date();
+    now.setDate(now.getDate() + daysToAdd);
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+
+    return now.toLocaleDateString('en-US', options);
+}

@@ -7,14 +7,14 @@ function renderHomeProducts(products) {
         const card = document.createElement('div');
         card.className = 'home-body-divs';
         card.id = `${product.id}`;
-        card.innerHTML = renderProductCard(product);
+        card.innerHTML = renderHomeCard(product);
         fragment.appendChild(card);
     });
 
     mainElem.appendChild(fragment);
 }
 
-function renderStars(rating) {
+function renderHomeStars(rating) {
     const starImages = {
         3.5: "Assets/Body_Assets/Rating_Stars/rating-35.png",
         4: "Assets/Body_Assets/Rating_Stars/rating-4.png",
@@ -24,7 +24,7 @@ function renderStars(rating) {
     return starImages[rating] || starImages[5]; // Default to 5 stars
 }
 
-function renderVariations(variations, productId) {
+function renderHomeVariations(variations, productId) {
     return Object.entries(variations).map(([type, values], index) => `
         <div class="home-body-div-variation js-variations-div js-variation-number-${index + 1}">
             <p class="js-variation-type">${type}</p>
@@ -39,10 +39,10 @@ function renderVariations(variations, productId) {
     `).join('');
 }
 
-function renderProductCard(product) {
-    const stars = renderStars(product.rating.stars || 5);
+function renderHomeCard(product) {
+    const stars = renderHomeStars(product.rating.stars || 5);
     const price = (product.priceCents ? (product.priceCents / 100).toFixed(2) : "N/A");
-    const variations = product.variations ? renderVariations(product.variations, product.id) : '';
+    const variations = product.variations ? renderHomeVariations(product.variations, product.id) : '';
 
     return `
         <div class="home-body-div-img"><img class="js-product-image" src="${product.image}" alt="${product.name}"></div>
@@ -82,15 +82,109 @@ function renderProductCard(product) {
 
 // ======================> Render Functions for checkout.html <=========================
 function renderCheckoutProducts(products) {
-    const mainDiv = document.querySelector(".checkout-products");
-    // mainDiv.innerHTML = "";
+    const productDiv = document.querySelector(".checkout-products");
+    productDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
 
-    // products.forEach(product => {
-    //     const card = document.createElement('div');
-    //     card.className = 'home-body-divs';
-    //     card.id = `${product.id}`;
-    //     card.innerHTML = renderProductCard(product);
-    //     fragment.appendChild(card);
-    // });
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product';
+        card.innerHTML = renderCheckoutCard(product);
+        fragment.appendChild(card);
+    });
+    productDiv.appendChild(fragment);
+
+    
+    const mainDiv = document.querySelector(".checkout-content-div");
+    fragment.innerHTML = "";
+    const total = document.createElement('div');
+    total.className = 'checkout-total';
+    total.innerHTML = renderCheckoutTotal();
+    fragment.appendChild(total);
+    mainDiv.appendChild(fragment);
+
+}
+
+function renderCheckoutVariations(variation) {
+    return Object.entries(variation).map(([type, value], _) => `
+        <p class="variation">${type}: ${value}</p>
+        `).join('');
+}
+
+function checkoutItemsTotal() {
+    
+}
+
+function renderCheckoutTotal() {
+    const itemsTotal = checkoutItemsTotal()
+    return `
+        <div class="checkout-total-heading">Order Summary</div>
+        <div class="checkout-price">
+            <p>Items (3):</p>
+            <p>$72.00</p>
+        </div>
+        <div class="checkout-price">
+            <p>Shipping & handling:</p>
+            <p>$9.99</p>
+        </div>
+        <hr class="bar">
+        <div class="checkout-price">
+            <p>Total before tax:</p>
+            <p>$81.99</p>
+        </div>
+        <div class="checkout-price">
+            <p>Estimated tax (10%):</p>
+            <p>$8.20</p>
+        </div>
+        <hr>
+        <div class="checkout-price check-price-total">
+            <p>Order total:</p>
+            <p>$90.19</p>
+        </div>
+        <button class="order">Place your order</button>
+    `
+}
+
+
+function renderCheckoutCard(product) {
+    const variations = product.variation ? renderCheckoutVariations(product.variation) : '';
+    return `
+    <div class="delivery">Delivery date: ${getDate(9)}</div>
+    <div class="details">
+        <div class="product-details">
+            <img src="${product.image}" alt="product-image">
+            <div>
+                <p class="name">${product.name}</p>
+                <p class="price">${product.price}</p>
+                ${variations}
+                <p class="variation">Quantity: ${product.quantity}<a href="#">Update</a><a href="#">Delete</a></p>
+            </div>
+        </div>
+        <div class="COD-options">
+            <div>
+                <p class="heading">Choose a delivery option:</p>
+                <div class="option">
+                    <input type="radio">
+                    <div>
+                        <p class="date">${getDate(9)}</p>
+                        <p class="shipping-fee">FREE Shipping</p>
+                    </div>
+                </div>
+                <div class="option">
+                    <input type="radio">
+                    <div>
+                        <p class="date">${getDate(5)}</p>
+                        <p class="shipping-fee">$4.99 - Shipping</p>
+                    </div>
+                </div>
+                <div class="option">
+                    <input type="radio">
+                    <div>
+                        <p class="date">${getDate(1)}</p>
+                        <p class="shipping-fee">$9.99 - Shipping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`
 }
