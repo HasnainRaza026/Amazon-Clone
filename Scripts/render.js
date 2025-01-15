@@ -82,6 +82,7 @@ function renderHomeCard(product) {
 
 // ======================> Render Functions for checkout.html <=========================
 function renderCheckoutProducts(products) {
+    let price = 0;
     const productDiv = document.querySelector(".checkout-products");
     productDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
@@ -91,18 +92,18 @@ function renderCheckoutProducts(products) {
         card.className = 'product';
         card.innerHTML = renderCheckoutCard(product);
         fragment.appendChild(card);
+        price += checkoutItemPrice(product)
     });
+
     productDiv.appendChild(fragment);
 
-    
     const mainDiv = document.querySelector(".checkout-content-div");
     fragment.innerHTML = "";
     const total = document.createElement('div');
     total.className = 'checkout-total';
-    total.innerHTML = renderCheckoutTotal();
+    total.innerHTML = renderCheckoutTotal(price);
     fragment.appendChild(total);
     mainDiv.appendChild(fragment);
-
 }
 
 function renderCheckoutVariations(variation) {
@@ -111,35 +112,34 @@ function renderCheckoutVariations(variation) {
         `).join('');
 }
 
-function checkoutItemsTotal() {
-    
+function checkoutItemPrice(product) {
+    return product.quantity===1 ? Number(product.price.replace('$', '')) : Number(product.price.replace('$', '')) * product.quantity;
 }
 
-function renderCheckoutTotal() {
-    const itemsTotal = checkoutItemsTotal()
+function renderCheckoutTotal(totalPrice) {
     return `
         <div class="checkout-total-heading">Order Summary</div>
         <div class="checkout-price">
             <p>Items (3):</p>
-            <p>$72.00</p>
+            <p>$${totalPrice.toFixed(2)}</p>
         </div>
         <div class="checkout-price">
             <p>Shipping & handling:</p>
-            <p>$9.99</p>
+            <p>$0.00</p>
         </div>
         <hr class="bar">
         <div class="checkout-price">
             <p>Total before tax:</p>
-            <p>$81.99</p>
+            <p>$${totalPrice.toFixed(2)}</p>
         </div>
         <div class="checkout-price">
             <p>Estimated tax (10%):</p>
-            <p>$8.20</p>
+            <p>$${(totalPrice * 0.1).toFixed(2)}</p>
         </div>
         <hr>
         <div class="checkout-price check-price-total">
             <p>Order total:</p>
-            <p>$90.19</p>
+            <p>$${((totalPrice * 0.1) + totalPrice).toFixed(2)}</p>
         </div>
         <button class="order">Place your order</button>
     `
