@@ -158,8 +158,8 @@ function renderCheckoutCard(product) {
                 <p class="name">${product.name}</p>
                 <p class="price">${product.price}</p>
                 ${variations}
-                <p class="variation">Quantity: <span class="js-checkout-update-span">${product.quantity}</span>
-                    <a href="#" class="js-checkout-update" product-id="${product.id}">Update</a>
+                <p class="variation">Quantity: <span class="js-checkout-quantity-update">${product.quantity}</span>
+                    <a class="js-checkout-update" product-id="${product.id}">Update</a>
                     <a href="checkout.html" class="js-checkout-delt" product-id="${product.id}">Delete</a>
                 </p>
             </div>

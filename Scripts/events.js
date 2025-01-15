@@ -105,9 +105,30 @@ function handleDeleteClick(target) {
 }
 
 function handleUpdateClick(target) {
-    target.innerText = "Save";
     const id = target.getAttribute("product-id");
-    const quantityElem = document.getElementById(id).querySelector(".js-checkout-update-span")
-    quantityElem.outerHTML = `<input type="number" style="width: 40px; height: 20px; padding-left: 5px" placeholder="${quantityElem.innerText}" min="1" max="10">`
-    // console.log(quantityElem)
+    const quantityElem = document.getElementById(id).querySelector(".js-checkout-quantity-update");
+    
+    if (quantityElem.tagName === "SPAN") {
+        target.innerText = "Save";
+        quantityElem.outerHTML = `<input type="number" class="js-checkout-quantity-update" product-id="${id}" style="width: 40px; height: 20px; padding-left: 5px" placeholder="${quantityElem.innerText}" min="1" max="10">`;
+    } else {
+        target.innerText = "Update";
+        let productQuantity = '';
+        let totalQuantity = 0;
+
+        cartProducts.forEach(item => {
+            if (item.id === id) {   
+                item.quantity = quantityElem.value || 1;
+                productQuantity = item.quantity;
+            }
+            totalQuantity += Number(item.quantity);
+        });
+        cartQuantity = totalQuantity;
+
+        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+        quantityElem.outerHTML = `<span class="js-checkout-quantity-update">${productQuantity}</span>`;
+
+        location.reload();
+    }  
 }
