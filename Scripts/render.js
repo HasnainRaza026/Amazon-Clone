@@ -90,6 +90,7 @@ function renderCheckoutProducts(products) {
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product';
+        card.id = `${product.id}`;
         card.innerHTML = renderCheckoutCard(product);
         fragment.appendChild(card);
         price += checkoutItemPrice(product)
@@ -157,7 +158,10 @@ function renderCheckoutCard(product) {
                 <p class="name">${product.name}</p>
                 <p class="price">${product.price}</p>
                 ${variations}
-                <p class="variation">Quantity: ${product.quantity}<a href="#">Update</a><a href="#">Delete</a></p>
+                <p class="variation">Quantity: <span class="js-checkout-update-span">${product.quantity}</span>
+                    <a href="#" class="js-checkout-update" product-id="${product.id}">Update</a>
+                    <a href="checkout.html" class="js-checkout-delt" product-id="${product.id}">Delete</a>
+                </p>
             </div>
         </div>
         <div class="COD-options">

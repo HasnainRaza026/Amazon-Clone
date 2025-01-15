@@ -28,7 +28,7 @@ function updateCartQuantity(quantity) {
 }
 
 
-function getProductDetails(productElem) {
+function getProductDetails(productElem, id) {
     const variationObject = {};
 
     const variationsDivs = productElem.querySelectorAll(".js-variations-div");
@@ -50,6 +50,7 @@ function getProductDetails(productElem) {
     }
 
     return {
+        id: id,
         name: productElem.querySelector(".js-product-name").innerText,
         price: productElem.querySelector(".js-product-price").innerText,
         image: productElem.querySelector(".js-product-image").getAttribute("src"),

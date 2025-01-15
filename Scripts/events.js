@@ -2,6 +2,7 @@ let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
 
 
+// =============================> Event Listners <==============================
 document.addEventListener("DOMContentLoaded", async () => {
     const bodyId = document.body.getAttribute("id");
 
@@ -31,10 +32,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     else if (bodyId === "checkout") {
         document.querySelector(".js-checkout-item-quantity").innerText = cartQuantity + " items";
         if (cartProducts) renderCheckoutProducts(cartProducts);
+
+        document.querySelector(".checkout-content-div").addEventListener("click", (event) => {
+            if (event.target.matches(".js-checkout-delt")) {
+                handleDeleteClick(event.target);
+            } else if (event.target.matches(".js-checkout-update")) {
+                handleUpdateClick(event.target);
+            }
+        });
     }
 });
 
 
+// =============================> Home Event Listner Functions <==============================
 function handleAddToCart(target) {
     const id = target.getAttribute("product-id"); // We can't use 'this' keyword because the function is listening for the click events on the entire document, hence we use 'event.target'
     const productElem = document.getElementById(id);
@@ -43,7 +53,7 @@ function handleAddToCart(target) {
     updateCartQuantity(cartQuantity);
     displayAddedToCart(productElem);
 
-    const productDetails = getProductDetails(productElem);
+    const productDetails = getProductDetails(productElem, id);
     if (!productDetails) {
         console.error(`Failed to extract details for product ID ${id}`);
         return;
@@ -51,7 +61,6 @@ function handleAddToCart(target) {
 
     cartProducts.push(productDetails);
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-    console.log(cartProducts);
 }
 
 
@@ -83,3 +92,22 @@ function handleVariationClick(target, products) {
 }
 
 
+// =============================> Checkout Event Listner Functions <==============================
+function handleDeleteClick(target) {
+    const id = target.getAttribute("product-id");
+    const product = cartProducts.find(p => p.id === id);
+
+    cartQuantity -= product.quantity;
+    cartProducts.splice(cartProducts.indexOf(product), 1);
+
+    localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+}
+
+function handleUpdateClick(target) {
+    target.innerText = "Save";
+    const id = target.getAttribute("product-id");
+    const quantityElem = document.getElementById(id).querySelector(".js-checkout-update-span")
+    quantityElem.outerHTML = `<input type="number" style="width: 40px; height: 20px; padding-left: 5px" placeholder="${quantityElem.innerText}" min="1" max="10">`
+    // console.log(quantityElem)
+}
