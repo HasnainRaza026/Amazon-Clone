@@ -1,5 +1,7 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+let shipping = JSON.parse(localStorage.getItem("shipping")) || {};
+let shippingFeeTotal = JSON.parse(localStorage.getItem("shippingFeeTotal")) || 0;
 
 
 // =============================> Event Listners <==============================
@@ -38,6 +40,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 handleDeleteClick(event.target);
             } else if (event.target.matches(".js-checkout-update")) {
                 handleUpdateClick(event.target);
+            } else if (event.target.matches(".js-checkout-shipping")) {
+                handleShipping(event.target);
             }
         });
     }
@@ -130,4 +134,17 @@ function handleUpdateClick(target) {
         quantityElem.outerHTML = `<span class="js-checkout-quantity-update">${quantity}</span>`;
         location.reload();
     }  
+}
+
+function handleShipping(target) {
+    shippingFeeTotal = 0;
+    const shippingElems = document.querySelectorAll(".js-shippings");
+    shippingElems.forEach(elem => {
+        const radioElems = elem.querySelectorAll(".js-checkout-shipping");
+        radioElems.forEach(radio => {
+            if (radio.checked) shippingFeeTotal += Number(radio.value);
+        });
+    });
+
+    updateLocalStorage()
 }

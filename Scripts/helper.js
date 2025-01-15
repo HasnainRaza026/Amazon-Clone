@@ -71,4 +71,5 @@ function getDate(daysToAdd = 0) {
 function updateLocalStorage() {
     localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+    localStorage.setItem("shippingFeeTotal", JSON.stringify(shippingFeeTotal));
 }

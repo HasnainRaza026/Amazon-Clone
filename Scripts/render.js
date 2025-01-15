@@ -93,9 +93,11 @@ function renderCheckoutProducts(products) {
         card.id = `${product.id}`;
         card.innerHTML = renderCheckoutCard(product);
         fragment.appendChild(card);
-        price += checkoutItemPrice(product)
-    });
 
+        price += checkoutItemPrice(product) // calculate total price
+        // if (!shipping) shipping[product.id] = 0;
+    });
+    // console.log(shipping);
     productDiv.appendChild(fragment);
     renderCheckoutSummery(price)
 }
@@ -129,7 +131,7 @@ function renderCheckoutTotal(totalPrice) {
         </div>
         <div class="checkout-price">
             <p>Shipping & handling:</p>
-            <p>$0.00</p>
+            <p>$${shippingFeeTotal.toFixed(2)}</p>
         </div>
         <hr class="bar">
         <div class="checkout-price">
@@ -167,24 +169,24 @@ function renderCheckoutCard(product) {
             </div>
         </div>
         <div class="COD-options">
-            <div>
+            <div class="js-shippings">
                 <p class="heading">Choose a delivery option:</p>
-                <div class="option">
-                    <input type="radio">
+                <div class="option" id="1">
+                    <input type="radio" name="shipping-${product.id}" value="0" checked class="js-checkout-shipping" product-id="${product.id}" index="1">
                     <div>
                         <p class="date">${getDate(9)}</p>
                         <p class="shipping-fee">FREE Shipping</p>
                     </div>
                 </div>
-                <div class="option">
-                    <input type="radio">
+                <div class="option" id="2">
+                    <input type="radio" name="shipping-${product.id}" value="4.99" class="js-checkout-shipping" product-id="${product.id}" index="2">
                     <div>
                         <p class="date">${getDate(5)}</p>
                         <p class="shipping-fee">$4.99 - Shipping</p>
                     </div>
                 </div>
-                <div class="option">
-                    <input type="radio">
+                <div class="option" id="3">
+                    <input type="radio" name="shipping-${product.id}" value="9.99" class="js-checkout-shipping" product-id="${product.id}" index="3">
                     <div>
                         <p class="date">${getDate(1)}</p>
                         <p class="shipping-fee">$9.99 - Shipping</p>
