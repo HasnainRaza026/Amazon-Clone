@@ -1,7 +1,5 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
-let shipping = JSON.parse(localStorage.getItem("shipping")) || {};
-let shippingFeeTotal = JSON.parse(localStorage.getItem("shippingFeeTotal")) || 0;
 
 
 // =============================> Event Listners <==============================
@@ -33,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Event Listners for the checkout.html 
     else if (bodyId === "checkout") {
         document.querySelector(".js-checkout-item-quantity").innerText = cartQuantity + " items";
-        if (cartProducts) renderCheckoutProducts(cartProducts);
+        if (cartProducts) renderCheckoutProducts();
 
         document.querySelector(".checkout-content-div").addEventListener("click", (event) => {
             if (event.target.matches(".js-checkout-delt")) {
@@ -64,7 +62,7 @@ function handleAddToCart(target) {
     }
 
     cartProducts.push(productDetails);
-    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+    updateLocalStorage()
 }
 
 
@@ -137,14 +135,10 @@ function handleUpdateClick(target) {
 }
 
 function handleShipping(target) {
-    shippingFeeTotal = 0;
-    const shippingElems = document.querySelectorAll(".js-shippings");
-    shippingElems.forEach(elem => {
-        const radioElems = elem.querySelectorAll(".js-checkout-shipping");
-        radioElems.forEach(radio => {
-            if (radio.checked) shippingFeeTotal += Number(radio.value);
-        });
+    const id = target.getAttribute("product-id");
+    cartProducts.forEach(product => {
+        if (product.id === id) product.shippingFee = Number(target.value);
     });
-
-    updateLocalStorage()
+    updateLocalStorage();
+    location.reload();
 }

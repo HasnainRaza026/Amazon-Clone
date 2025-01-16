@@ -55,7 +55,8 @@ function getProductDetails(productElem, id) {
         price: productElem.querySelector(".js-product-price").innerText,
         image: productElem.querySelector(".js-product-image").getAttribute("src"),
         quantity: productElem.querySelector("select").value,
-        variation: variationObject
+        variation: variationObject,
+        shippingFee: 0
     };
 }
 
@@ -71,5 +72,4 @@ function getDate(daysToAdd = 0) {
 function updateLocalStorage() {
     localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-    localStorage.setItem("shippingFeeTotal", JSON.stringify(shippingFeeTotal));
 }

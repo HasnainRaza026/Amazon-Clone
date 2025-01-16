@@ -81,33 +81,34 @@ function renderHomeCard(product) {
 
 
 // ======================> Render Functions for checkout.html <=========================
-function renderCheckoutProducts(products) {
-    let price = 0;
+function renderCheckoutProducts() {
+    let totalPrice = 0;
+    let totalShippingFee = 0;
     const productDiv = document.querySelector(".checkout-products");
     productDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
 
-    products.forEach(product => {
+    cartProducts.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product';
         card.id = `${product.id}`;
         card.innerHTML = renderCheckoutCard(product);
         fragment.appendChild(card);
 
-        price += checkoutItemPrice(product) // calculate total price
-        // if (!shipping) shipping[product.id] = 0;
+        totalPrice += checkoutItemPrice(product) // calculate total price of all products
+        totalShippingFee += product.shippingFee;
     });
-    // console.log(shipping);
+
     productDiv.appendChild(fragment);
-    renderCheckoutSummery(price)
+    renderCheckoutSummery(totalPrice, totalShippingFee)
 }
 
-function renderCheckoutSummery(price) {
+function renderCheckoutSummery(totalPrice, totalShippingFee) {
     const mainDiv = document.querySelector(".checkout-content-div");
     const fragment = document.createDocumentFragment();
     const total = document.createElement('div');
     total.className = 'checkout-total';
-    total.innerHTML = renderCheckoutTotal(price);
+    total.innerHTML = renderCheckoutTotal(totalPrice, totalShippingFee);
     fragment.appendChild(total);
     mainDiv.appendChild(fragment);
 }
@@ -122,7 +123,7 @@ function checkoutItemPrice(product) {
     return product.quantity===1 ? Number(product.price.replace('$', '')) : Number(product.price.replace('$', '')) * product.quantity;
 }
 
-function renderCheckoutTotal(totalPrice) {
+function renderCheckoutTotal(totalPrice, totalShippingFee) {
     return `
         <div class="checkout-total-heading">Order Summary</div>
         <div class="checkout-price">
@@ -131,7 +132,7 @@ function renderCheckoutTotal(totalPrice) {
         </div>
         <div class="checkout-price">
             <p>Shipping & handling:</p>
-            <p>$${shippingFeeTotal.toFixed(2)}</p>
+            <p>$${totalShippingFee.toFixed(2)}</p>
         </div>
         <hr class="bar">
         <div class="checkout-price">
@@ -145,7 +146,7 @@ function renderCheckoutTotal(totalPrice) {
         <hr>
         <div class="checkout-price check-price-total">
             <p>Order total:</p>
-            <p>$${((totalPrice * 0.1) + totalPrice).toFixed(2)}</p>
+            <p>$${((totalPrice * 0.1) + totalShippingFee + totalPrice).toFixed(2)}</p>
         </div>
         <button class="order">Place your order</button>
     `
@@ -172,21 +173,21 @@ function renderCheckoutCard(product) {
             <div class="js-shippings">
                 <p class="heading">Choose a delivery option:</p>
                 <div class="option" id="1">
-                    <input type="radio" name="shipping-${product.id}" value="0" checked class="js-checkout-shipping" product-id="${product.id}" index="1">
+                    <input type="radio" name="shipping-${product.id}" value="0" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 0 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(9)}</p>
                         <p class="shipping-fee">FREE Shipping</p>
                     </div>
                 </div>
                 <div class="option" id="2">
-                    <input type="radio" name="shipping-${product.id}" value="4.99" class="js-checkout-shipping" product-id="${product.id}" index="2">
+                    <input type="radio" name="shipping-${product.id}" value="4.99" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 4.99 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(5)}</p>
                         <p class="shipping-fee">$4.99 - Shipping</p>
                     </div>
                 </div>
                 <div class="option" id="3">
-                    <input type="radio" name="shipping-${product.id}" value="9.99" class="js-checkout-shipping" product-id="${product.id}" index="3">
+                    <input type="radio" name="shipping-${product.id}" value="9.99" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 9.99 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(1)}</p>
                         <p class="shipping-fee">$9.99 - Shipping</p>
