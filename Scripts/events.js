@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     // Event Listners for the checkout.html 
     else if (bodyId === "checkout") {
-        document.querySelector(".js-checkout-item-quantity").innerText = cartQuantity + " items";
         if (cartProducts) renderCheckoutProducts();
 
         document.querySelector(".checkout-content-div").addEventListener("click", (event) => {
@@ -104,6 +103,7 @@ function handleDeleteClick(target) {
     cartProducts.splice(cartProducts.indexOf(product), 1);
 
     updateLocalStorage();
+    renderCheckoutProducts();
 }
 
 
@@ -130,7 +130,7 @@ function handleUpdateClick(target) {
         updateLocalStorage()
 
         quantityElem.outerHTML = `<span class="js-checkout-quantity-update">${quantity}</span>`;
-        location.reload();
+        renderCheckoutProducts();
     }  
 }
 
@@ -139,6 +139,7 @@ function handleShipping(target) {
     cartProducts.forEach(product => {
         if (product.id === id) product.shippingFee = Number(target.value);
     });
+    
     updateLocalStorage();
-    location.reload();
+    renderCheckoutProducts();
 }

@@ -82,8 +82,11 @@ function renderHomeCard(product) {
 
 // ======================> Render Functions for checkout.html <=========================
 function renderCheckoutProducts() {
+    document.querySelector(".js-checkout-item-quantity").innerText = cartQuantity + " items";
+
     let totalPrice = 0;
     let totalShippingFee = 0;
+
     const productDiv = document.querySelector(".checkout-products");
     productDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
@@ -104,7 +107,8 @@ function renderCheckoutProducts() {
 }
 
 function renderCheckoutSummery(totalPrice, totalShippingFee) {
-    const mainDiv = document.querySelector(".checkout-content-div");
+    const mainDiv = document.querySelector(".checkout-summery");
+    mainDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
     const total = document.createElement('div');
     total.className = 'checkout-total';
@@ -148,14 +152,23 @@ function renderCheckoutTotal(totalPrice, totalShippingFee) {
             <p>Order total:</p>
             <p>$${((totalPrice * 0.1) + totalShippingFee + totalPrice).toFixed(2)}</p>
         </div>
-        <button class="order">Place your order</button>
+        <button class="order" ${totalPrice || "disabled"}>Place your order</button>
     `
 }
 
 function renderCheckoutCard(product) {
     const variations = product.variation ? renderCheckoutVariations(product.variation) : '';
+    let date = "";
+    if (product.shippingFee === 0) {
+        date = getDate(9);
+    } else if (product.shippingFee === 4.99) {
+        date = getDate(5);
+    } else {
+        date = getDate(1);
+    }
+
     return `
-    <div class="delivery">Delivery date: ${getDate(9)}</div>
+    <div class="delivery">Delivery date: ${date}</div>
     <div class="details">
         <div class="product-details">
             <img src="${product.image}" alt="product-image">
@@ -165,7 +178,7 @@ function renderCheckoutCard(product) {
                 ${variations}
                 <p class="variation">Quantity: <span class="js-checkout-quantity-update">${product.quantity}</span>
                     <a class="js-checkout-update" product-id="${product.id}">Update</a>
-                    <a href="checkout.html" class="js-checkout-delt" product-id="${product.id}">Delete</a>
+                    <a class="js-checkout-delt" product-id="${product.id}">Delete</a>
                 </p>
             </div>
         </div>
