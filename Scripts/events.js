@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             } else if (event.target.matches(".js-checkout-shipping")) {
                 handleShipping(event.target);
             } else if (event.target.matches(".js-place-order")) {
-                handlePlaceOrder(event.target);
+                handlePlaceOrder();
             }
         });
     }
@@ -147,7 +147,7 @@ function handleShipping(target) {
     renderCheckoutProducts();
 }
 
-function handlePlaceOrder(target) {
+function handlePlaceOrder() {
     if (cartProducts.length === 0) return;
     cartProducts.forEach(product => {
         orderedProducts.push({

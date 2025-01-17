@@ -114,8 +114,10 @@ function renderCheckoutProducts() {
 
 function renderCheckoutEmpty() {
     return `
-        <p class="empty">Your cart is empty.</p>
-        <a href="index.html" class="empty-button">View products</a>`;
+        <div class="empty-div">
+            <p class="empty">Your cart is empty.</p>
+            <a href="index.html" class="empty-button">View products</a>
+        </div>`;
 }
 
 function renderCheckoutSummery(totalPrice, totalShippingFee) {
