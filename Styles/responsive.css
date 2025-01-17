@@ -55,7 +55,6 @@
 
  /* ----------------------------Checkout Page Header and Main Media Query -------------------------------- */
 @media (max-width: 1000px) {
-    /* For Header */
     .checkout-header-text p {
         font-size: 22px;
     }
@@ -65,7 +64,6 @@
 }
 
 @media (max-width: 575px) {
-    /* For Header */
     .checkout-header-amazon-img .large {
         display: none;
     }
@@ -78,7 +76,6 @@
 }
 
 @media (max-width: 1120px) {
-    /* For Main */
    .checkout-content-div {
        flex-direction: column;
        gap: 10px;
@@ -96,3 +93,63 @@
        width: 500px;
    }
 }
+
+
+ /* ---------------------------- Orders Page Media Query -------------------------------- */
+ @media (max-width: 800px) {
+    .orders-products-data-all .orders-product-data {
+        flex-direction: column;
+    }
+
+    .orders-product-data .track-order {
+        width: 145px;
+        margin-left: 134px;
+        margin-top: 10px;
+    }
+ }
+
+ @media (max-width: 575px) {
+    .orders-product .orders-product-head, .orders-product-head .total-and-date {
+        flex-direction: column;
+    }
+
+    .orders-product-head .date, .orders-product-head .total-price, .orders-product-head .order-uuid {
+        display: flex;
+        margin-bottom: 8px;
+    }
+
+    .orders-product-head .head-heading {
+        margin-right: 5px;
+    }
+ }
+
+ @media (max-width: 450px) {
+    .orders-product-data .orders-product-details {
+        flex-direction: column;
+    }
+
+    .orders-product-details img {
+        width: 114.5px;
+        height: 150px;
+        margin-bottom: 25px;
+    }
+
+    .orders-product-details .orders-product-details-data, .orders-product-details-data .buy-again-button, .orders-product-data .track-order {
+        width: 100%;
+    }
+
+    .orders-product-details-data .buy-again-button img{
+        display: none;
+    }
+
+    .orders-product-details-data .buy-again-button {
+        justify-content: center;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .orders-product-data .track-order {
+        margin: 0;
+    }
+ }
