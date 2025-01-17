@@ -1,5 +1,6 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+let orderedProducts = JSON.parse(localStorage.getItem("orderedProducts")) || [];
 
 
 // =============================> Event Listners <==============================
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     // Event Listners for the checkout.html 
     else if (bodyId === "checkout") {
-        if (cartProducts) renderCheckoutProducts();
+        renderCheckoutProducts();
 
         document.querySelector(".checkout-content-div").addEventListener("click", (event) => {
             if (event.target.matches(".js-checkout-delt")) {
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 handleUpdateClick(event.target);
             } else if (event.target.matches(".js-checkout-shipping")) {
                 handleShipping(event.target);
+            } else if (event.target.matches(".js-place-order")) {
+                handlePlaceOrder(event.target);
             }
         });
     }
@@ -142,4 +145,31 @@ function handleShipping(target) {
     
     updateLocalStorage();
     renderCheckoutProducts();
+}
+
+function handlePlaceOrder(target) {
+    if (cartProducts.length === 0) return;
+    cartProducts.forEach(product => {
+        orderedProducts.push({
+            name: product.name,
+            image: product.image,
+            quantity: product.quantity,
+            variation: product.variation,
+            arrivalDate: `${product.shippingFee===0 ? getDate(9) : product.shippingFee===4.99 ? 
+                                getDate(5) : getDate(1)}`
+        })
+    })
+
+    orderedProducts = [
+        {
+            totalPrice: document.querySelector(".js-grand-total").innerText,
+            orderPlacedDate: getDate(),
+            orderId: crypto.randomUUID(), // Generates a random UUID
+        },
+        ...orderedProducts // Spread Operator add previous elements of array
+    ]
+
+    cartProducts = [];
+    cartQuantity = 0;
+    updateLocalStorage();
 }

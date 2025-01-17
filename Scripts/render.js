@@ -89,8 +89,14 @@ function renderCheckoutProducts() {
 
     const productDiv = document.querySelector(".checkout-products");
     productDiv.innerHTML = "";
-    const fragment = document.createDocumentFragment();
 
+    if (cartProducts.length === 0) {
+        productDiv.innerHTML += renderCheckoutEmpty();
+        renderCheckoutSummery(totalPrice, totalShippingFee);
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
     cartProducts.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product';
@@ -104,6 +110,12 @@ function renderCheckoutProducts() {
 
     productDiv.appendChild(fragment);
     renderCheckoutSummery(totalPrice, totalShippingFee)
+}
+
+function renderCheckoutEmpty() {
+    return `
+        <p class="empty">Your cart is empty.</p>
+        <a href="index.html" class="empty-button">View products</a>`;
 }
 
 function renderCheckoutSummery(totalPrice, totalShippingFee) {
@@ -150,9 +162,9 @@ function renderCheckoutTotal(totalPrice, totalShippingFee) {
         <hr>
         <div class="checkout-price check-price-total">
             <p>Order total:</p>
-            <p>$${((totalPrice * 0.1) + totalShippingFee + totalPrice).toFixed(2)}</p>
+            <p class="js-grand-total">$${((totalPrice * 0.1) + totalShippingFee + totalPrice).toFixed(2)}</p>
         </div>
-        <button class="order" ${totalPrice || "disabled"}>Place your order</button>
+        <button class="order js-place-order" ${totalPrice || "disabled"}>Place your order</button>
     `
 }
 

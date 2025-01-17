@@ -223,7 +223,7 @@
     margin: 20px 0 20px 0;
 }
 
-.checkout-total button {
+.checkout-total button, .checkout-products .empty-button {
     width: 100%;
     border: none;
     border-radius: 8px;
@@ -232,8 +232,22 @@
     margin-top: 20px;
 }
 
-.checkout-total button:hover {
+.checkout-total button:hover, .checkout-products .empty-button:hover  {
     background-color: #f5cb00;
+}
+
+.checkout-products .empty-button {
+    width: auto;
+    font-size: 18px;
+    padding: 10px 20px;
+    
+    text-decoration: none;
+    color: #212121;
+}
+
+.checkout-products .empty {
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 hr {
