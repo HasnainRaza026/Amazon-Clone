@@ -67,9 +67,15 @@ p, div {
 
 .orders-product .orders-products-data-all {
     border: 1px solid #d5d9d9;
+    padding: 45px 25px 40px 30px;
+    border-bottom: none;
+    border-top: none;
+}
+
+.orders-product .orders-products-data-all:last-child {
+    border-bottom: 1px solid #d5d9d9;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 45px 25px 40px 30px;
 }
 
 .orders-products-data-all .orders-product-data {

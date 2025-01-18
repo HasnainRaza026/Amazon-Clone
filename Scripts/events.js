@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
     }
+
+    else if (bodyId === "orders") {
+        renderOrderedProducts();
+    }
 });
 
 
@@ -149,8 +153,10 @@ function handleShipping(target) {
 
 function handlePlaceOrder() {
     if (cartProducts.length === 0) return;
+    let tempArray = [];
+
     cartProducts.forEach(product => {
-        orderedProducts.push({
+        tempArray.push({
             name: product.name,
             image: product.image,
             quantity: product.quantity,
@@ -160,16 +166,21 @@ function handlePlaceOrder() {
         })
     })
 
-    orderedProducts = [
+    tempArray = [
         {
             totalPrice: document.querySelector(".js-grand-total").innerText,
             orderPlacedDate: getDate(),
             orderId: crypto.randomUUID(), // Generates a random UUID
         },
-        ...orderedProducts // Spread Operator add previous elements of array
+        ...tempArray // Spread Operator add previous elements of array
     ]
+
+    orderedProducts = [tempArray, ...orderedProducts]
 
     cartProducts = [];
     cartQuantity = 0;
     updateLocalStorage();
+    renderCheckoutProducts();
+
+    console.log(orderedProducts);
 }

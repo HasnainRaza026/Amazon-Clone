@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="Styles/orders_page.css">
     <link rel="stylesheet" href="Styles/responsive.css">
 </head>
-<body>
+<body id="orders">
     <!-- Sliding top bar for small screens -->
     <div class="top-bar js-top-bar">
         <div>
@@ -52,13 +52,14 @@
         </div>
     </header>
 
+    <!-- Main Ordered Products -->
     <main class="orders-main">
         <div class="orders-main-div">
             <div class="orders-heading">Your Orders</div>
 
-            <div class="orders-products-all">
-                <div class="orders-product">
-                    <div class="orders-product-head">
+            <div class="orders-products-all"> <!-- access this div -->
+                <!-- <div class="orders-product"> create this div -->
+                    <!-- <div class="orders-product-head">
                         <div class="total-and-date">
                             <div class="date">
                                 <p class="head-heading">Order Placed:</p>
@@ -73,9 +74,9 @@
                             <p class="head-heading">Order ID:</p>
                             <p class="head-value">98c34f3a-c2f1-dade-ea9e-263a267484b6</p>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="orders-products-data-all">
+                    <!-- <div class="orders-products-data-all">
                         <div class="orders-product-data">
                             <div class="orders-product-details">
                                 <img src="Assets/Body_Assets/Products/plain-hooded-fleece-sweatshirt-yellow.jpg" alt="image">
@@ -92,11 +93,17 @@
                             </div>
                             <button class="track-order">Track package</button>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
+
             </div>
         </div>
     </main>
 
+
+    <script src="Scripts/fetch.js"></script>
+    <script src="Scripts/helper.js"></script>
+    <script src="Scripts/render.js"></script>
+    <script src="Scripts/events.js"></script>
 </body>
 </html>

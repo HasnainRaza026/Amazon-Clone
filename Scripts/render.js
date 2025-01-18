@@ -224,3 +224,73 @@ function renderCheckoutCard(product) {
         </div>
     </div>`
 }
+
+
+
+// ======================> Render Functions for orders.html <=========================
+function renderOrderedProducts() {
+    const orderedProductsDiv = document.querySelector(".orders-products-all");
+    orderedProductsDiv.innerHTML = "";
+
+    if (orderedProducts.length === 0) return;
+    const fragment = document.createDocumentFragment();
+
+    orderedProducts.forEach(products => {
+        const card = document.createElement('div');
+        card.className = 'orders-product';
+        card.innerHTML = renderOrderedProductsHead(products);
+
+        products.forEach (product => {
+            if (product.orderId) card.innerHTML = renderOrderedProductsHead(product);
+            card.innerHTML += renderOrderedProductsBody(product);
+        })
+        
+        fragment.appendChild(card);
+    });
+
+    orderedProductsDiv.appendChild(fragment);
+}
+
+function renderOrderedProductsHead(headData) {
+    return `
+    <div class="orders-product-head">
+        <div class="total-and-date">
+            <div class="date">
+                <p class="head-heading">Order Placed:</p>
+                <p class="head-value">${headData.orderPlacedDate}</p>
+            </div>
+            <div class="total-price">
+                <p class="head-heading">Total:</p>
+                <p class="head-value">${headData.totalPrice}</p>
+            </div>
+        </div>
+        <div class="order-uuid">
+            <p class="head-heading">Order ID:</p>
+            <p class="head-value">${headData.orderId}</p>
+        </div>
+    </div>
+    `
+}
+
+function renderOrderedProductsBody(bodyData) {
+    return `
+    <div class="orders-products-data-all">
+        <div class="orders-product-data">
+            <div class="orders-product-details">
+                <img src="${bodyData.image}" alt="image">
+                <div class="orders-product-details-data">
+                    <p class="orders-product-details-name">${bodyData.name}</p>
+                    <p class="orders-product-details-other-info">${bodyData.arrivalDate}</p>
+                    <div class="orders-product-details-variations">
+                        <p class="orders-product-details-other-info">Color: Teal</p>
+                        <p class="orders-product-details-other-info">Size: L</p>
+                    </div>
+                    <p class="orders-product-details-other-info">${bodyData.quantity}</p>
+                    <button class="buy-again-button"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
+                </div>
+            </div>
+            <button class="track-order">Track package</button>
+        </div>
+    </div>
+    `
+}
