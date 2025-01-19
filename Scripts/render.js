@@ -229,6 +229,9 @@ function renderCheckoutCard(product) {
 
 // ======================> Render Functions for orders.html <=========================
 function renderOrderedProducts() {
+    document.querySelector(".js-cart-quantity").innerText = cartQuantity;
+    document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
+
     const orderedProductsDiv = document.querySelector(".orders-products-all");
     orderedProductsDiv.innerHTML = "";
 
@@ -238,17 +241,25 @@ function renderOrderedProducts() {
     orderedProducts.forEach(products => {
         const card = document.createElement('div');
         card.className = 'orders-product';
-        card.innerHTML = renderOrderedProductsHead(products);
 
         products.forEach (product => {
             if (product.orderId) card.innerHTML = renderOrderedProductsHead(product);
-            card.innerHTML += renderOrderedProductsBody(product);
+            else card.innerHTML += renderOrderedProductsBody(product);
         })
         
         fragment.appendChild(card);
     });
 
     orderedProductsDiv.appendChild(fragment);
+}
+
+function renderOrderedProductsVariations(variation) {
+    return `
+    <div class="orders-product-details-variations">
+        ${Object.entries(variation).map(([type, value], _) => `
+            <p class="orders-product-details-other-info">${type}: ${value}</p>
+            `).join('')}
+    </div>`
 }
 
 function renderOrderedProductsHead(headData) {
@@ -268,25 +279,22 @@ function renderOrderedProductsHead(headData) {
             <p class="head-heading">Order ID:</p>
             <p class="head-value">${headData.orderId}</p>
         </div>
-    </div>
-    `
+    </div>`
 }
 
 function renderOrderedProductsBody(bodyData) {
+    const variations = bodyData.variation ? renderOrderedProductsVariations(bodyData.variation) : '';
     return `
-    <div class="orders-products-data-all">
+    <div class="orders-products-data-all" id="${bodyData.id}">
         <div class="orders-product-data">
             <div class="orders-product-details">
                 <img src="${bodyData.image}" alt="image">
                 <div class="orders-product-details-data">
                     <p class="orders-product-details-name">${bodyData.name}</p>
                     <p class="orders-product-details-other-info">${bodyData.arrivalDate}</p>
-                    <div class="orders-product-details-variations">
-                        <p class="orders-product-details-other-info">Color: Teal</p>
-                        <p class="orders-product-details-other-info">Size: L</p>
-                    </div>
-                    <p class="orders-product-details-other-info">${bodyData.quantity}</p>
-                    <button class="buy-again-button"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
+                    ${variations}
+                    <p class="orders-product-details-other-info">Quantity: ${bodyData.quantity}</p>
+                    <button class="buy-again-button js-buy-again" product-id="${bodyData.id}"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
                 </div>
             </div>
             <button class="track-order">Track package</button>

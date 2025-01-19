@@ -46,8 +46,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    // Event Listners for the orders.html
     else if (bodyId === "orders") {
         renderOrderedProducts();
+
+        document.querySelector(".orders-products-all").addEventListener("click", (event) => {
+            if (event.target.matches(".js-buy-again")) {
+                handleBuyAgain(event.target);
+            }
+        });
     }
 });
 
@@ -157,10 +164,13 @@ function handlePlaceOrder() {
 
     cartProducts.forEach(product => {
         tempArray.push({
+            id: product.id,
             name: product.name,
+            price: product.price,
             image: product.image,
             quantity: product.quantity,
             variation: product.variation,
+            shippingFee: product.shippingFee,
             arrivalDate: `${product.shippingFee===0 ? getDate(9) : product.shippingFee===4.99 ? 
                                 getDate(5) : getDate(1)}`
         })
@@ -173,14 +183,35 @@ function handlePlaceOrder() {
             orderId: crypto.randomUUID(), // Generates a random UUID
         },
         ...tempArray // Spread Operator add previous elements of array
-    ]
+    ];
 
-    orderedProducts = [tempArray, ...orderedProducts]
+    orderedProducts = [tempArray, ...orderedProducts];
 
     cartProducts = [];
     cartQuantity = 0;
     updateLocalStorage();
     renderCheckoutProducts();
+}
 
-    console.log(orderedProducts);
+
+// =============================> Orders Event Listner Functions <==============================
+function handleBuyAgain(target) {
+    const id = target.getAttribute("product-id");
+
+    target.innerHTML = `<img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">🗸 Addded`
+    setTimeout(() => {
+        target.innerHTML = `<img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again`;
+    }, 2000);
+
+    orderedProducts.forEach(products => {
+        products.forEach(product  => {
+            if (product.id === id) {
+                cartProducts.push(product);
+                cartQuantity += Number(product.quantity);
+            }
+        });
+    });
+
+    updateLocalStorage()
+    renderOrderedProducts()
 }
