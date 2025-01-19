@@ -27,6 +27,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 handleVariationClick(event.target, products);
             }
         });
+
+        document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                handleSearchProducts(products);
+            }
+        });
+
+        document.querySelector(".js-search-button").addEventListener("click", (_) => {
+            handleSearchProducts(products);
+        });
     } 
     
     // Event Listners for the checkout.html 
@@ -104,6 +114,20 @@ function handleVariationClick(target, products) {
     if (image) {
         document.getElementById(id).querySelector(".js-product-image").src = image;
     }
+}
+
+function handleSearchProducts(products) {
+    const searchInput = document.querySelector(".js-search-input").value
+    if (!searchInput) return;
+
+    let searchedProducts = [];
+    products.forEach(product => {
+        (product.keywords).forEach(keyword => {
+            if (searchInput === keyword) searchedProducts.push(product);
+        })
+    });
+
+    renderHomeProducts(searchedProducts); //incomplete --- NOT WORKING
 }
 
 
