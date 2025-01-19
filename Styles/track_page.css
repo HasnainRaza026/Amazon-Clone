@@ -1,0 +1,22 @@
+.track-main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 65px;
+}
+
+.track-main .track-main-div {
+    flex: 1;
+    max-width: 950px;
+    margin: 35px 15px 0 15px;
+}
+
+.track-main-div .track-link {
+    font-size: 18px;
+    color: #3282bb;
+    text-decoration: underline;
+}
+
+.track-main-div .track-link:hover {
+    color: #c83e31
+}

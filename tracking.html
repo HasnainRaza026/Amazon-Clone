@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Orders</title>
+
+    <link rel="stylesheet" href="Styles/general.css">
+    <link rel="stylesheet" href="Styles/header.css">
+    <link rel="stylesheet" href="Styles/track_page.css">
+    <link rel="stylesheet" href="Styles/responsive.css">
+</head>
+
+<body>
+    <!-- Sliding top bar for small screens -->
+    <div class="top-bar js-top-bar">
+        <div>
+            <a href="#">Returns & Orders</a>
+        </div>
+        <div>
+            <a href="checkout.html">Cart (<spanc class="js-cart-quantity-sm">0</span>)</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="div-amazon-img">
+            <a href="index.html"><img class="amazon-logo-mobile" src="Assets/Header_Assets/amazon-mobile-logo-white.png" alt="logo"><img class="amazon-logo-large" src="Assets/Header_Assets/amazon-logo-white.png" alt="logo"></a>
+        </div>
+
+        <div class="div-search-bar">
+            <input class="js-search-input" type="text" placeholder="Search">
+            <button class="js-search-button"><img src="Assets/Header_Assets/search-icon.png" alt="search"></button>
+        </div>
+
+        <div class="div-cart-order">
+            <img class="hamburger-icon js-hamburger-icon" src="Assets/Header_Assets/hamburger-menu.png" alt="hamburger-menu">
+
+            <div class="div-order-and-return">
+                <a href="orders.html">
+                    <p class="returns">Returns</p>
+                    <p class="orders">& Orders</p>
+                </a>
+            </div>
+
+            <div class="div-cart">
+                <a href="checkout.html">
+                    <img src="Assets/Header_Assets/cart-icon.png" alt="cart">
+                    <div class="js-cart-quantity">0</div>
+                    <p>Cart</p> 
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="track-main">
+        <div class="track-main-div">
+            <a href="orders.html" class="track-link">View all orders</a>
+        </div>
+    </main>
+</body>
+</html>
