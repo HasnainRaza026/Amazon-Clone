@@ -213,5 +213,6 @@ function handleBuyAgain(target) {
     });
 
     updateLocalStorage()
-    renderOrderedProducts()
+    document.querySelector(".js-cart-quantity").innerText = cartQuantity;
+    document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
 }
