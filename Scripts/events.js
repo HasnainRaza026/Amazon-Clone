@@ -6,6 +6,7 @@ let trackingProduct = JSON.parse(localStorage.getItem("trackingProduct")) || {};
 
 // =============================> Event Listners <==============================
 document.addEventListener("DOMContentLoaded", async () => {
+    const products = await fetchJSON('./Data/products.json');
     const bodyId = document.body.getAttribute("id");
 
     // Event Listners for the index.html 
@@ -13,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelector(".js-cart-quantity").innerText = cartQuantity;
         document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
         
-        const products = await fetchJSON('./Data/products.json');
         if (products) renderHomeProducts(products);
 
         document.querySelector(".js-hamburger-icon").addEventListener("click", () => {
@@ -31,12 +31,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                handleSearchProducts(products);
+                const searchedProducts = handleSearchProducts(products);
+                renderHomeProducts(searchedProducts);
             }
         });
 
         document.querySelector(".js-search-button").addEventListener("click", (_) => {
-            handleSearchProducts(products);
+            const searchedProducts = handleSearchProducts(products);
+            renderHomeProducts(searchedProducts);
         });
     } 
     
@@ -68,11 +70,35 @@ document.addEventListener("DOMContentLoaded", async () => {
                 handleTrackOrder(event.target);
             }
         });
+
+        document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                const searchedProducts = handleSearchProducts(products);
+                window.location.href = "index.html";
+            }
+        });
+
+        document.querySelector(".js-search-button").addEventListener("click", (_) => {
+            const searchedProducts = handleSearchProducts(products);
+            window.location.href = "index.html";
+        });
     }
 
     else if (bodyId === "track") {
         renderTrackOrders(trackingProduct);
     }
+
+    document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            const searchedProducts = handleSearchProducts(products);
+            window.location.href = "index.html";
+        }
+    });
+
+    document.querySelector(".js-search-button").addEventListener("click", (_) => {
+        const searchedProducts = handleSearchProducts(products);
+        window.location.href = "index.html";
+    });
 });
 
 
@@ -134,7 +160,7 @@ function handleSearchProducts(products) {
         })
     });
 
-    renderHomeProducts(searchedProducts); //incomplete --- NOT WORKING
+    return searchedProducts;
 }
 
 

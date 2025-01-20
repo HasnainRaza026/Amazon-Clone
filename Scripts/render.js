@@ -3,6 +3,8 @@ function renderHomeProducts(products) {
     const mainElem = document.querySelector(".home-product-grid");
     const fragment = document.createDocumentFragment(); //DocumentFragment is DOM-like structure (Not part of actual DOM tree) that acts as a temporary container for DOM elements. We do all upadates in it then finally append it to the actual DOM. If I directly update the DOM each time, the browser will trigger a reflow and repaint, which can degrade performance
 
+    mainElem.innerHTML = "";    
+
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'home-body-divs';
@@ -305,7 +307,6 @@ function renderOrderedProductsBody(bodyData) {
 
 // ======================> Render Functions for orders.html <=========================
 function renderTrackOrders(product) {
-    // console.log(product);
     document.querySelector(".js-cart-quantity").innerText = cartQuantity;
     document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
 
