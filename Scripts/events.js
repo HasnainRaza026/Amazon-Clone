@@ -1,6 +1,7 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
 let orderedProducts = JSON.parse(localStorage.getItem("orderedProducts")) || [];
+let trackingProduct = JSON.parse(localStorage.getItem("trackingProduct")) || {};
 
 
 // =============================> Event Listners <==============================
@@ -63,8 +64,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelector(".orders-products-all").addEventListener("click", (event) => {
             if (event.target.matches(".js-buy-again")) {
                 handleBuyAgain(event.target);
+            } else if (event.target.matches(".js-track-order")) {
+                handleTrackOrder(event.target);
             }
         });
+    }
+
+    else if (bodyId === "track") {
+        renderTrackOrders(trackingProduct);
     }
 });
 
@@ -239,4 +246,17 @@ function handleBuyAgain(target) {
     updateLocalStorage()
     document.querySelector(".js-cart-quantity").innerText = cartQuantity;
     document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
+}
+
+function handleTrackOrder(target) {
+    const id = target.getAttribute("product-id");
+    let product = {};
+
+    orderedProducts.forEach(products => {
+        product = products.find(p => p.id === id) || product
+    })
+
+    trackingProduct = product;
+    updateLocalStorage()
+    window.location.href = "tracking.html";
 }

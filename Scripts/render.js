@@ -297,8 +297,41 @@ function renderOrderedProductsBody(bodyData) {
                     <button class="buy-again-button js-buy-again" product-id="${bodyData.id}"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
                 </div>
             </div>
-            <button class="track-order">Track package</button>
+            <button class="track-order js-track-order" product-id="${bodyData.id}">Track package</button>
         </div>
     </div>
+    `
+}
+
+// ======================> Render Functions for orders.html <=========================
+function renderTrackOrders(product) {
+    // console.log(product);
+    document.querySelector(".js-cart-quantity").innerText = cartQuantity;
+    document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
+
+    const trackOrderMain = document.querySelector(".track-main");
+    trackOrderMain.innerHTML = "";
+
+    if (product.length === 0) return;
+    trackOrderMain.innerHTML = renderTrackProduct(product);
+}
+
+function renderTrackVariations(variation) {
+    return Object.entries(variation).map(([type, value], _) => `
+        <p class="track-data">${type}: ${value}</p>
+        `).join('');
+}
+
+function renderTrackProduct(product) {
+    const variations = product.variation ? renderTrackVariations(product.variation) : '';
+    return `
+    <div class="track-main-div">
+        <a href="orders.html" class="track-link">View all orders</a>
+        <p class="track-arrival">${product.name}</p>
+        <p class="track-data">${product.name}</p>
+        ${variations}
+        <p class="track-data">Quantity: ${product.quantity}</p>
+        <img src="${product.image}" alt="image">
+    <div>
     `
 }

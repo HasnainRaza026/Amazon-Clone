@@ -1,3 +1,7 @@
+body {
+    color: #212121;
+}
+
 .track-main {
     width: 100vw;
     display: flex;
@@ -19,4 +23,22 @@
 
 .track-main-div .track-link:hover {
     color: #c83e31
+}
+
+.track-main-div .track-arrival {
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.track-main-div .track-data {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.track-main-div img {
+    width: 114px;
+    height: 150px;
+    margin: 25px 0 25px 0;
 }

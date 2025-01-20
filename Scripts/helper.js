@@ -73,4 +73,5 @@ function updateLocalStorage() {
     localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
     localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
     localStorage.setItem("orderedProducts", JSON.stringify(orderedProducts));
+    localStorage.setItem("trackingProduct", JSON.stringify(trackingProduct));
 }
