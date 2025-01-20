@@ -33,7 +33,7 @@ function renderHomeVariations(variations, productId) {
             ${values.map(val => `
                 <div class="js-variation" 
                      variation-number="${index + 1}" 
-                     product-id="${productId}"
+                     data-product-id="${productId}"
                      selected="false">
                      ${val}
                 </div>`).join('')}
@@ -76,7 +76,7 @@ function renderHomeCard(product) {
                     <img class="js-added-to-cart" src="Assets/Body_Assets/Others/checkmark.png" alt="added">
                     <p class="js-added-to-cart">Added</p>
             </div>
-            <div><button class="js-add-to-cart-btn" product-id="${product.id}">Add to Cart</button></div>
+            <div><button class="js-add-to-cart-btn" data-product-id="${product.id}">Add to Cart</button></div>
         </div>`;
 }
 
@@ -193,8 +193,8 @@ function renderCheckoutCard(product) {
                 <p class="price">${product.price}</p>
                 ${variations}
                 <p class="variation">Quantity: <span class="js-checkout-quantity-update">${product.quantity}</span>
-                    <a class="js-checkout-update" product-id="${product.id}">Update</a>
-                    <a class="js-checkout-delt" product-id="${product.id}">Delete</a>
+                    <a class="js-checkout-update" data-product-id="${product.id}">Update</a>
+                    <a class="js-checkout-delt" data-product-id="${product.id}">Delete</a>
                 </p>
             </div>
         </div>
@@ -202,21 +202,21 @@ function renderCheckoutCard(product) {
             <div class="js-shippings">
                 <p class="heading">Choose a delivery option:</p>
                 <div class="option" id="1">
-                    <input type="radio" name="shipping-${product.id}" value="0" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 0 ? "checked" : ""}>
+                    <input type="radio" name="shipping-${product.id}" value="0" class="js-checkout-shipping" data-product-id="${product.id}" ${product.shippingFee === 0 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(9)}</p>
                         <p class="shipping-fee">FREE Shipping</p>
                     </div>
                 </div>
                 <div class="option" id="2">
-                    <input type="radio" name="shipping-${product.id}" value="4.99" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 4.99 ? "checked" : ""}>
+                    <input type="radio" name="shipping-${product.id}" value="4.99" class="js-checkout-shipping" data-product-id="${product.id}" ${product.shippingFee === 4.99 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(5)}</p>
                         <p class="shipping-fee">$4.99 - Shipping</p>
                     </div>
                 </div>
                 <div class="option" id="3">
-                    <input type="radio" name="shipping-${product.id}" value="9.99" class="js-checkout-shipping" product-id="${product.id}" ${product.shippingFee === 9.99 ? "checked" : ""}>
+                    <input type="radio" name="shipping-${product.id}" value="9.99" class="js-checkout-shipping" data-product-id="${product.id}" ${product.shippingFee === 9.99 ? "checked" : ""}>
                     <div>
                         <p class="date">${getDate(1)}</p>
                         <p class="shipping-fee">$9.99 - Shipping</p>
@@ -296,10 +296,10 @@ function renderOrderedProductsBody(bodyData) {
                     <p class="orders-product-details-other-info">${bodyData.arrivalDate}</p>
                     ${variations}
                     <p class="orders-product-details-other-info">Quantity: ${bodyData.quantity}</p>
-                    <button class="buy-again-button js-buy-again" product-id="${bodyData.id}"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
+                    <button class="buy-again-button js-buy-again" data-product-id="${bodyData.id}"><img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">Buy it again</button>
                 </div>
             </div>
-            <button class="track-order js-track-order" product-id="${bodyData.id}">Track package</button>
+            <button class="track-order js-track-order" data-product-id="${bodyData.id}">Track package</button>
         </div>
     </div>
     `

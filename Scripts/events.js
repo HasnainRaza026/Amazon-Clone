@@ -86,25 +86,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     else if (bodyId === "track") {
         renderTrackOrders(trackingProduct);
-    }
 
-    document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
+        document.querySelector(".js-search-input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                const searchedProducts = handleSearchProducts(products);
+                window.location.href = "index.html";
+            }
+        });
+
+        document.querySelector(".js-search-button").addEventListener("click", (_) => {
             const searchedProducts = handleSearchProducts(products);
             window.location.href = "index.html";
-        }
-    });
-
-    document.querySelector(".js-search-button").addEventListener("click", (_) => {
-        const searchedProducts = handleSearchProducts(products);
-        window.location.href = "index.html";
-    });
+        });
+    }
 });
 
 
 // =============================> Home Event Listner Functions <==============================
 function handleAddToCart(target) {
-    const id = target.getAttribute("product-id"); // We can't use 'this' keyword because the function is listening for the click events on the entire document, hence we use 'event.target'
+    const id = target.dataset.productId; // We can't use 'this' keyword because the function is listening for the click events on the entire document, hence we use 'event.target'
     const productElem = document.getElementById(id);
     
     cartQuantity += Number(productElem.querySelector("select").value);
@@ -123,7 +123,7 @@ function handleAddToCart(target) {
 
 
 function handleVariationClick(target, products) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
     const variationNumber = target.getAttribute("variation-number");
     const variationType = document.getElementById(id)
         .querySelector(`.js-variation-number-${variationNumber}`)
@@ -166,7 +166,7 @@ function handleSearchProducts(products) {
 
 // =============================> Checkout Event Listner Functions <==============================
 function handleDeleteClick(target) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
     const product = cartProducts.find(p => p.id === id);
     if (!product) return;
 
@@ -179,7 +179,7 @@ function handleDeleteClick(target) {
 
 
 function handleUpdateClick(target) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
     const quantityElem = document.getElementById(id).querySelector(".js-checkout-quantity-update");
     
     if (quantityElem.tagName === "SPAN") {
@@ -206,7 +206,7 @@ function handleUpdateClick(target) {
 }
 
 function handleShipping(target) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
     cartProducts.forEach(product => {
         if (product.id === id) product.shippingFee = Number(target.value);
     });
@@ -253,7 +253,7 @@ function handlePlaceOrder() {
 
 // =============================> Orders Event Listner Functions <==============================
 function handleBuyAgain(target) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
 
     target.innerHTML = `<img src="Assets/Body_Assets/Others/buy-again.png" alt="icon">🗸 Addded`
     setTimeout(() => {
@@ -275,7 +275,7 @@ function handleBuyAgain(target) {
 }
 
 function handleTrackOrder(target) {
-    const id = target.getAttribute("product-id");
+    const id = target.dataset.productId;
     let product = {};
 
     orderedProducts.forEach(products => {
