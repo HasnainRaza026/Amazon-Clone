@@ -88,6 +88,7 @@ function renderCheckoutProducts() {
 
     let totalPrice = 0;
     let totalShippingFee = 0;
+    let totalQuantity = 0;
 
     const productDiv = document.querySelector(".checkout-products");
     productDiv.innerHTML = "";
@@ -108,10 +109,11 @@ function renderCheckoutProducts() {
 
         totalPrice += checkoutItemPrice(product) // calculate total price of all products
         totalShippingFee += product.shippingFee;
+        totalQuantity += Number(product.quantity);
     });
 
     productDiv.appendChild(fragment);
-    renderCheckoutSummery(totalPrice, totalShippingFee)
+    renderCheckoutSummery(totalPrice, totalShippingFee, totalQuantity)
 }
 
 function renderCheckoutEmpty() {
@@ -122,13 +124,13 @@ function renderCheckoutEmpty() {
         </div>`;
 }
 
-function renderCheckoutSummery(totalPrice, totalShippingFee) {
+function renderCheckoutSummery(totalPrice, totalShippingFee, totalQuantity) {
     const mainDiv = document.querySelector(".checkout-summery");
     mainDiv.innerHTML = "";
     const fragment = document.createDocumentFragment();
     const total = document.createElement('div');
     total.className = 'checkout-total';
-    total.innerHTML = renderCheckoutTotal(totalPrice, totalShippingFee);
+    total.innerHTML = renderCheckoutTotal(totalPrice, totalShippingFee, totalQuantity);
     fragment.appendChild(total);
     mainDiv.appendChild(fragment);
 }
@@ -143,11 +145,11 @@ function checkoutItemPrice(product) {
     return product.quantity===1 ? Number(product.price.replace('$', '')) : Number(product.price.replace('$', '')) * product.quantity;
 }
 
-function renderCheckoutTotal(totalPrice, totalShippingFee) {
+function renderCheckoutTotal(totalPrice, totalShippingFee, totalQuantity) {
     return `
         <div class="checkout-total-heading">Order Summary</div>
         <div class="checkout-price">
-            <p>Items (3):</p>
+            <p>Items (${totalQuantity || 0}):</p>
             <p>$${totalPrice.toFixed(2)}</p>
         </div>
         <div class="checkout-price">
