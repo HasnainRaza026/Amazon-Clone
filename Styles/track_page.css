@@ -1,3 +1,8 @@
+:root  {
+    --height: 1.8em;
+} 
+
+
 body {
     color: #212121;
 }
@@ -38,7 +43,45 @@ body {
 }
 
 .track-main-div img {
-    width: 114px;
+    width: 150px;
     height: 150px;
     margin: 25px 0 25px 0;
+}
+
+.progress-bar-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.progress-bar-headings {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', Arial;
+    font-weight: 500;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.progress-bar-headings .preparing {
+    color: #067d62;
+}
+
+.progress-bar {
+    width: 100%;
+    height: var(--height);
+    border: 1px solid #c8c8c8;
+    border-radius: calc(var(--height)/2);
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    background-color: green;
+    border-radius: calc(var(--height)/2);
+    height: 100%;
+    width: calc(var(--width, 0) *1%);
+    min-width: 5%;
+    max-width: 100%;
 }

@@ -307,7 +307,7 @@ function renderOrderedProductsBody(bodyData) {
     `
 }
 
-// ======================> Render Functions for orders.html <=========================
+// ======================> Render Functions for tracking.html <=========================
 function renderTrackOrders(product) {
     document.querySelector(".js-cart-quantity").innerText = cartQuantity;
     document.querySelector(".js-cart-quantity-sm").innerText = cartQuantity;
@@ -335,6 +335,15 @@ function renderTrackProduct(product) {
         ${variations}
         <p class="track-data">Quantity: ${product.quantity}</p>
         <img src="${product.image}" alt="image">
+
+        <div class="progress-bar-container">
+        <div class="progress-bar-headings">
+            <p class="preparing">Preparing</p>
+            <p class="shipped">Shipped</p>
+            <p class="delivered">Delivered</p>
+        </div>
+        <div class="progress-bar" style="--width: 15"></div>
+    </div>
     <div>
     `
 }
