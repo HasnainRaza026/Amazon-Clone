@@ -150,7 +150,7 @@ function handleVariationClick(target, products) {
 }
 
 function handleSearchProducts(products) {
-    const searchInput = document.querySelector(".js-search-input").value
+    const searchInput = document.querySelector(".js-search-input").value.toLowerCase();
     if (!searchInput) return;
 
     let searchedProducts = [];
